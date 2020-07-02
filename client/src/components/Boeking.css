@@ -1,13 +1,6 @@
-.container-boekings-formulier{
-    border: 2px solid black;
-    padding: 4px;
-    margin: 2px;
-    font-size: 150%;
+.container-boekingsformulier h3{
+  margin: 30px;
 }
-
-button{
-}
-
 
 input[type=text], select, textarea {
     width: 100%; /* Full width */
@@ -36,6 +29,5 @@ input[type=text], select, textarea {
   /* When moving the mouse over the submit button, add a darker green color */
   input[type=submit]:hover {
     background-color: #45a049;
-    
   }
   
