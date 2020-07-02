@@ -6,26 +6,35 @@ import './Boeking.css'
      constructor(props){
          super(props);
          
-         this.onChangeKlantnaam = this.onChangeKlantnaam.bind(this);
+         this.onChangeVoornaam = this.onChangeVoornaam.bind(this);
+         this.onChangeAchternaam = this.onChangeAchternaam.bind(this);
+
          this.addBooking = this.addBooking.bind(this);
 
          this.state ={
-            klantnaam: 'Test',
+            voornaam: '...',
+            achternaam: '...'
         }
      }
 
      
-     onChangeKlantnaam(e){
+     onChangeVoornaam(e){
          this.setState({
-             klantnaam: e.target.value
+             voornaam: e.target.value
          })
      }
+
+     onChangeAchternaam(e){
+        this.setState({
+            achternaam: e.target.value
+        })
+    }
 
      addBooking(e){
          e.preventDefault();
 
          const boeking = {
-             customername: this.state.klantnaam
+             customername: this.state.voornaam
          }
 
          console.log(boeking);
@@ -39,14 +48,18 @@ import './Boeking.css'
         render(){
             return(
                 <div>
-                    <h3>Create new booking</h3>
+                    <h3>Boek hier uw verblijf</h3>
                     <form onSubmit={this.addBooking}>
                         <div className="form-group">
-                            <label>Naam</label>
-                            <input type="text" required className="form-control" value={this.state.klantnaam} onChange={this.onChangeKlantnaam}/>
+                            <label>Voornaam</label>
+                            <input type="text" required className="form-control" value={this.state.voornaam} onChange={this.onChangeVoornaam}/>
                         </div>
                         <div className="form-group">
-                            <input type="submit" value="Create Exercise Log" className="btn btn-primary" />
+                            <label>Achternaam</label>
+                            <input type="text" required className="form-control" value={this.state.achternaam} onChange={this.onChangeAchternaam}/>
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" value="Bevestig" className="btn btn-primary" />
                         </div>
                     </form>
                 </div>
