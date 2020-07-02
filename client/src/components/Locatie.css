@@ -1,0 +1,6 @@
+.google-maps div:first-child{
+    
+    position: relative !important;
+    height: 750px !important;
+    width: 900px !important;
+}

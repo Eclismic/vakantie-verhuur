@@ -1,0 +1,11 @@
+.container-boekings-formulier{
+    border: 2px solid black;
+    padding: 4px;
+    margin: 2px;
+    font-size: 150%;
+}
+
+button{
+    position: relative;
+    left: 75%;
+}
