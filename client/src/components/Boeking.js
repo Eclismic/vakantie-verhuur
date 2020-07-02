@@ -13,7 +13,8 @@ import './Boeking.css'
 
          this.state ={
             voornaam: '...',
-            achternaam: '...'
+            achternaam: '...',
+            plaats: '...'
         }
      }
 
@@ -30,6 +31,12 @@ import './Boeking.css'
         })
     }
 
+    onChangePlaats(e){
+        this.setState({
+            plaats: e.target.value
+        })
+    }
+
      addBooking(e){
          e.preventDefault();
 
@@ -42,7 +49,6 @@ import './Boeking.css'
 
          axios.post('/bookings/add', boeking)
          .then(res => console.log(res.data));
-
      };
 
         render(){
@@ -57,6 +63,10 @@ import './Boeking.css'
                         <div className="form-group">
                             <label>Achternaam</label>
                             <input type="text" required className="form-control" value={this.state.achternaam} onChange={this.onChangeAchternaam}/>
+                        </div>
+                        <div className="form-group">
+                            <label>Plaats</label>
+                            <input type="text" required className="form-control" value={this.state.plaats} onChange={this.onChangePlaats}/>
                         </div>
                         <div className="form-group">
                             <input type="submit" value="Bevestig" className="btn btn-primary" />
