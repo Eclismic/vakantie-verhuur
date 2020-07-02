@@ -8,7 +8,7 @@ let Customer = require('../models/customer.model');
 
 
 
-router.post('/add', async (req, res) => {
+router.post('user/add', async (req, res) => {
     if (isEmpty(req.body)) {
         return res.status(403).json({
             message: 'Body should not be empty',
@@ -64,16 +64,14 @@ router.get('/bookings', async (req,res) =>{
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.post('/bookings/add').post((req, res) => {
+router.route('/bookings/add').post((req, res) => {
     const customername = req.body.customername;
   
-    const newBooking = new Booking({
-      customername
-    });
+    const newCustomer = new Customer({customername});
   
-    newBooking.save()
-    .then(() => res.json('Boeking toegevoegd!'))
-    .catch(err => res.status(400).json('Error: ' + err));
+    newCustomer.save()
+      .then(() => res.json('Klant toegevoegd!'))
+      .catch(err => res.status(400).json('Error: ' + err));
   });
 
 module.exports = router;

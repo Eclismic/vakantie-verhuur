@@ -29,9 +29,11 @@ import './Boeking.css'
          }
 
          console.log(boeking);
+         console.log("hiep hoi");
 
          axios.post('/bookings/add', boeking)
          .then(res => console.log(res.data));
+
      };
 
         render(){
