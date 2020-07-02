@@ -30,7 +30,7 @@ import './Boeking.css'
 
          console.log(boeking);
 
-         axios.post('http://localhost:5000/bookings/add', boeking)
+         axios.post('/bookings/add', boeking)
          .then(res => console.log(res.data));
      };
 
