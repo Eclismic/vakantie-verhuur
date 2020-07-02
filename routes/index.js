@@ -72,7 +72,7 @@ router.route('/bookings/add').post((req, res) => {
   
     newCustomer.save()
       .then(() => res.json('Klant toegevoegd!'))
-      .catch(err => res.status(400).json('[FOUT!!!!!]Error: ' + err));
+      .catch(err => res.status(400).json('Error: ' + err));
   });
 
 module.exports = router;
