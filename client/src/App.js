@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import Header from './components/lay-out/Header/Header'
-import ContentBlockOne from './components/lay-out/ContentBlockOne/ContentBlockOne';
-import ContentBlockTwo from './components/lay-out/ContentBlockTwo/ContentBlockTwo';
-import Footer from './components/lay-out/Footer/Footer';
-import Locatie from './components/lay-out/Locatie/Locatie'
-import Boeking   from './components/lay-out/Boeking/Boeking'
+import ContentBlockOne from './components/Tweepersoons';
+import ContentBlockTwo from './components/Vierpersoons';
+import Footer from './components/Footer';
+import Locatie from './components/Locatie'
+import Boeking   from './components/Boeking'
 import {
   BrowserRouter as Router,
   Switch,
