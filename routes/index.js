@@ -3,6 +3,11 @@ const { isEmpty } = require('lodash');
 const User = require('../models/user');
 const router = express.Router();
 
+let Booking = require('../models/bookings.model');
+let Customer = require('../models/customer.model');
+
+
+
 router.post('/add', async (req, res) => {
     if (isEmpty(req.body)) {
         return res.status(403).json({
@@ -52,5 +57,23 @@ router.get('/users', async (req, res) => {
     }
        
 });
+
+router.get('/bookings', async (req,res) =>{
+    Booking.find()
+    .then(bookings => res.json(bookings))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.post('/bookings/add').post((req, res) => {
+    const customername = req.body.customername;
+  
+    const newBooking = new Booking({
+      customername
+    });
+  
+    newBooking.save()
+    .then(() => res.json('Boeking toegevoegd!'))
+    .catch(err => res.status(400).json('Error: ' + err));
+  });
 
 module.exports = router;
