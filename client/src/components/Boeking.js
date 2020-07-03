@@ -14,7 +14,7 @@ import './Boeking.css'
          this.onChangeAchternaam = this.onChangeAchternaam.bind(this);
          this.onChangePlaats = this.onChangePlaats.bind(this);
          this.addBooking = this.addBooking.bind(this);
-         
+         this.showBoekingen = this.showBoekingen.bind(this);
 
          this.state ={
             voornaam: '...',
@@ -22,11 +22,25 @@ import './Boeking.css'
             plaats: '...',
             land: '...',
             startdate: new Date(),
-            enddate: new Date()
+            enddate: new Date(),
+            bestaandeBoekingen: []
         }
      }
 
-     
+     componentDidMount(){
+        this.fetchBoekingen();
+     }
+
+     //ophalen boekingen
+     fetchBoekingen(){
+        axios.get('/bookings/')
+        .then(res => (res.data.map((info) => this.setState({bestaandeBoekingen:[...this.state.bestaandeBoekingen, info.startdate]}))))
+     }
+
+     showBoekingen(){
+         this.state.bestaandeBoekingen.map(boeking => console.log(boeking))
+     }
+
      onChangeVoornaam(e){
          this.setState({
              voornaam: e.target.value
@@ -51,12 +65,19 @@ import './Boeking.css'
         })
     }
 
+    onChangeStartDate(date){
+        this.setState({
+            startdate: date
+        }
+        )
+    }
+
      addBooking(e){
          e.preventDefault();
 
          const boeking = {
              customername: this.state.voornaam,
-             startdate: this.state.startdate
+             startdate: this.state.startdate,
          }
 
          console.log(boeking);
@@ -70,34 +91,41 @@ import './Boeking.css'
 
         render(){
             return(
+                
                 <div className="container-boekingsformulier">
+                    <button onClick={this.showBoekingen}>Show Boekingen</button>
                     <h3>Boek hier uw verblijf</h3>
                     <form onSubmit={this.addBooking}>
                         <div className="form-group">
                             <label>Voornaam</label>
-                            <input type="text" required className="form-control" value={this.state.voornaam} onFocus={(e) => e.target.value == '...'? e.target.value = '': e.target.value} onChange={this.onChangeVoornaam}/>
+                            <input type="text" required className="form-control" value={this.state.voornaam} onFocus={(e) => e.target.value === '...'? e.target.value = '': e.target.value} onChange={this.onChangeVoornaam}/>
                         </div>
                         <div className="form-group">
                             <label>Achternaam</label>
-                            <input type="text" required className="form-control" value={this.state.achternaam} onFocus={(e) => e.target.value == '...'? e.target.value = '': e.target.value} onChange={this.onChangeAchternaam}/>
+                            <input type="text" required className="form-control" value={this.state.achternaam} onFocus={(e) => e.target.value === '...'? e.target.value = '': e.target.value} onChange={this.onChangeAchternaam}/>
                         </div>
                         <div className="form-group">
                             <label>Plaats</label>
-                            <input type="text" required className="form-control" value={this.state.plaats} onFocus={(e) => e.target.value == '...'? e.target.value = '': e.target.value} onChange={this.onChangePlaats}/>
+                            <input type="text" required className="form-control" value={this.state.plaats} onFocus={(e) => e.target.value === '...'? e.target.value = '': e.target.value} onChange={this.onChangePlaats}/>
                         </div>
                         <div className="form-group">
                             <label>Land</label>
-                            <input type="text" required className="form-control" value={this.state.land} onFocus={(e) => e.target.value == '...'? e.target.value = '': e.target.value} onChange={this.onChangeLand}/>
+                            <input type="text" required className="form-control" value={this.state.land} onFocus={(e) => e.target.value === '...'? e.target.value = '': e.target.value} onChange={this.onChangeLand}/>
                         </div>
                         <div className="datepicker">
                             <DatePicker 
                             selected = {this.state.startdate}
+                            onChange={date => this.onChangeStartDate(date)}
                             dateFormat="dd-MM-yyyy"
+                            isClearable
+                            placeholderText="Maak opnieuw uw keuze!"
+                            withPortal
                             />
                         </div>
                         <div className="form-group">
                             <input type="submit" value="Bevestig" className="btn btn-primary" />
                         </div>
+                        
                     </form>
                 </div>
             );
