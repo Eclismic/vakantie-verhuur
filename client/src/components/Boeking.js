@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import './Boeking.css'
 
  class Boeking extends Component{
@@ -86,7 +89,10 @@ import './Boeking.css'
                             <input type="text" required className="form-control" value={this.state.land} onFocus={(e) => e.target.value == '...'? e.target.value = '': e.target.value} onChange={this.onChangeLand}/>
                         </div>
                         <div className="datepicker">
-                            <DatePicker selected = {this.state.startdate}/>
+                            <DatePicker 
+                            selected = {this.state.startdate}
+                            dateFormat="dd-MM-yyyy"
+                            />
                         </div>
                         <div className="form-group">
                             <input type="submit" value="Bevestig" className="btn btn-primary" />
