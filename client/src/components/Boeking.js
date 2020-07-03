@@ -55,7 +55,8 @@ import './Boeking.css'
          e.preventDefault();
 
          const boeking = {
-             customername: this.state.voornaam
+             customername: this.state.voornaam,
+             startdate: this.state.startdate
          }
 
          console.log(boeking);

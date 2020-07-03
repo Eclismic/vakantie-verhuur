@@ -67,11 +67,12 @@ router.get('/bookings', async (req,res) =>{
 router.route('/bookings/add').post((req, res) => {
     console.log("ga je hier in?1");
     const customername = req.body.customername;
+    const startdate = req.body.startdate;
   
-    const newCustomer = new Customer({customername});
+    const newBooking = new Booking({customername, startdate});
   
-    newCustomer.save()
-      .then(() => res.json('Klant toegevoegd!'))
+    newBooking.save()
+      .then(() => res.json('Boeking toegevoegd!'))
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
