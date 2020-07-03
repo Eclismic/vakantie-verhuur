@@ -4,6 +4,8 @@ import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { addDays } from 'date-fns';
+
 import './Boeking.css'
 
  class Boeking extends Component{
@@ -119,7 +121,11 @@ import './Boeking.css'
                             dateFormat="dd-MM-yyyy"
                             isClearable
                             placeholderText="Maak opnieuw uw keuze!"
+                            minDate={new Date()}
+                            maxDate={addDays(new Date(),5)}
                             withPortal
+                            disablePast
+                            strictParsing
                             />
                         </div>
                         <div className="form-group">
