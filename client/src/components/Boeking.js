@@ -14,8 +14,8 @@ import './Boeking.css'
          this.onChangeAchternaam = this.onChangeAchternaam.bind(this);
          this.onChangePlaats = this.onChangePlaats.bind(this);
          this.addBooking = this.addBooking.bind(this);
-         this.showBoekingen = this.showBoekingen.bind(this);
          this.isBezet = this.isBezet.bind(this);
+         this.showBoekingen = this.showBoekingen.bind(this);
 
          this.state ={
             voornaam: '...',
@@ -29,8 +29,9 @@ import './Boeking.css'
             enddateDay: new Date().getDay(),
             enddateMonth: new Date().getMonth(),
             month: new Date().getMonth(),
-            period: 0,
-            bestaandeBoekingen: []
+            period: [],
+            bestaandeBoekingen: [],
+            geboekteDagen: []
         }
      }
 
@@ -39,16 +40,19 @@ import './Boeking.css'
      }
 
      //ophalen boekingen
-     fetchBoekingen(){
-        axios.get('/bookings/')
-        .then(res => (res.data.map((info) => this.setState({bestaandeBoekingen:[...this.state.bestaandeBoekingen, {Maand: info.startdateMonth, Dag: info.startdateDay, Period: info.period}]}))))
+     async fetchBoekingen(){
+       await axios.get('/bookings/')
+        .then(res => (res.data.map((info) => this.setState({bestaandeBoekingen:[...this.state.bestaandeBoekingen, {Maand: info.startdateMonth, Dag: info.startdateDay, period: info.period}]}))))
      }
 
      showBoekingen(){
-         this.state.bestaandeBoekingen.map(boeking => console.log(boeking))
+        console.log(this.state.geboekteDagen);
+        this.state.geboekteDagen.map(x => console.log(x))
+        
          //this.isBezet(this.state.fulldate)
-         console.log('state.period: ',this.state.period);
-     }
+        // console.log('state.period: ',this.state.period);
+    }
+    
 
      onChangeVoornaam(e){
          this.setState({
@@ -99,15 +103,28 @@ import './Boeking.css'
          e.preventDefault();
 
          const oneDay = 24 * 60 * 60 * 1000;
-         const beginVacation = new Date(2020, this.state.startdateMonth, this.state.startdateDay);
-         const endVacation = new Date(2020, this.state.enddateMonth, this.state.enddateDay);
-         const diffDays = Math.round(Math.abs((beginVacation - endVacation) / oneDay));
-        
-        await this.setState({
-             period: diffDays
-         })
+         const diffDays = Math.round(Math.abs((this.state.fulldateStart - this.state.fulldateEnd) / oneDay));
+         const allVacationDays = [];
 
-         console.log('state.period AWAIT: ',this.state.period);
+         Date.prototype.addDays = function(days) {
+            var date = new Date(this.valueOf());
+            date.setDate(date.getDate() + days);
+            return date;
+        }
+         
+        allVacationDays.push(this.state.fulldateStart);
+         let counter = 1;
+         while(counter <= diffDays){
+            let vakantieDag = this.state.fulldateStart.addDays(counter);
+            allVacationDays.push(vakantieDag);
+            counter = counter + 1;
+         }
+         
+
+         await this.setState({
+             geboekteDagen: allVacationDays
+         })
+         
 
          const boeking = {
              customername: this.state.voornaam,
@@ -115,7 +132,7 @@ import './Boeking.css'
              startdateDay: this.state.startdateDay,
              enddateMonth: this.state.enddateMonth,
              enddateDay: this.state.enddateDay,
-             period: this.state.period
+             allVacationDays: this.state.geboekteDagen
          }
 
          console.log(boeking);
@@ -124,18 +141,26 @@ import './Boeking.css'
          .then(res => console.log(res.data));
      };
 
-     isBezet(date){
+     async isBezet(date){
          //getDate()
         const day = date.getDate();
         const month = date.getMonth();
 
-        let bookedDaysMonth = this.state.bestaandeBoekingen.filter(boek => boek.Maand === month).map(x => x.Dag)
+        let bookingsSelectedMonth = this.state.bestaandeBoekingen.filter(boek => boek.Maand === month)
+        bookingsSelectedMonth.map(x => console.log(x))
+
+        let bookedDaysMonth = bookingsSelectedMonth.map(booking => this.getVacationDays(booking))
+        console.log(bookedDaysMonth);
+
+        //let bookedDaysMonth = this.state.bestaandeBoekingen.filter(boek => boek.Maand === month).map(x => x.Dag)
         
         return !bookedDaysMonth.includes(day)
 
         //return day !== 0 && day !==1 && day !== 2
 
      }
+
+     
 
         render(){
             return(
@@ -166,8 +191,8 @@ import './Boeking.css'
                             selected = {this.state.fulldateStart}
                             onChange={date => this.onChangeStartDate(date)}
                             dateFormat="dd-MM-yyyy"
-                            placeholderText="Maak opnieuw uw keuze!"
-                            filterDate={this.isBezet}
+                            placeholderText="Kies uw"
+                            //filterDate={this.isBezet}
                             withPortal
                             strictParsing
                             />
@@ -179,7 +204,7 @@ import './Boeking.css'
                             onChange={date => this.onChangeEndDate(date)}
                             dateFormat="dd-MM-yyyy"
                             placeholderText="Maak opnieuw uw keuze!"
-                            filterDate={this.isBezet}
+                            //filterDate={this.isBezet}
                             withPortal
                             strictParsing
                             />
