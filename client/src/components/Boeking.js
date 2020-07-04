@@ -4,8 +4,6 @@ import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { addDays } from 'date-fns';
-
 import './Boeking.css'
 
  class Boeking extends Component{
@@ -17,14 +15,21 @@ import './Boeking.css'
          this.onChangePlaats = this.onChangePlaats.bind(this);
          this.addBooking = this.addBooking.bind(this);
          this.showBoekingen = this.showBoekingen.bind(this);
+         this.isBezet = this.isBezet.bind(this);
 
          this.state ={
             voornaam: '...',
             achternaam: '...',
             plaats: '...',
             land: '...',
-            startdate: new Date(),
-            enddate: new Date(),
+            fulldateStart: new Date(),
+            startdateDay: new Date().getDay(),
+            startdateMonth: new Date().getMonth(),
+            fulldateEnd: new Date(),
+            enddateDay: new Date().getDay(),
+            enddateMonth: new Date().getMonth(),
+            month: new Date().getMonth(),
+            period: 0,
             bestaandeBoekingen: []
         }
      }
@@ -36,11 +41,13 @@ import './Boeking.css'
      //ophalen boekingen
      fetchBoekingen(){
         axios.get('/bookings/')
-        .then(res => (res.data.map((info) => this.setState({bestaandeBoekingen:[...this.state.bestaandeBoekingen, info.startdate]}))))
+        .then(res => (res.data.map((info) => this.setState({bestaandeBoekingen:[...this.state.bestaandeBoekingen, {Maand: info.startdateMonth, Dag: info.startdateDay, Period: info.period}]}))))
      }
 
      showBoekingen(){
          this.state.bestaandeBoekingen.map(boeking => console.log(boeking))
+         //this.isBezet(this.state.fulldate)
+         console.log('state.period: ',this.state.period);
      }
 
      onChangeVoornaam(e){
@@ -68,28 +75,67 @@ import './Boeking.css'
     }
 
     onChangeStartDate(date){
-        this.setState({
-            startdate: date
+        if(date){
+            this.setState({
+                fulldateStart: date,
+                startdateMonth: date.getMonth(),
+                startdateDay: date.getDate()
+            })
         }
-        )
     }
 
-     addBooking(e){
+    onChangeEndDate(date){
+        if(date){
+            this.setState({
+                fulldateEnd: date,
+                enddateMonth: date.getMonth(),
+                enddateDay: date.getDate()
+            })
+        }
+    }
+    
+
+    async addBooking(e){
          e.preventDefault();
+
+         const oneDay = 24 * 60 * 60 * 1000;
+         const beginVacation = new Date(2020, this.state.startdateMonth, this.state.startdateDay);
+         const endVacation = new Date(2020, this.state.enddateMonth, this.state.enddateDay);
+         const diffDays = Math.round(Math.abs((beginVacation - endVacation) / oneDay));
+        
+        await this.setState({
+             period: diffDays
+         })
+
+         console.log('state.period AWAIT: ',this.state.period);
 
          const boeking = {
              customername: this.state.voornaam,
-             startdate: this.state.startdate,
+             startdateMonth: this.state.startdateMonth,
+             startdateDay: this.state.startdateDay,
+             enddateMonth: this.state.enddateMonth,
+             enddateDay: this.state.enddateDay,
+             period: this.state.period
          }
 
          console.log(boeking);
-         console.log("hiep hoi");
 
          axios.post('/bookings/add', boeking)
          .then(res => console.log(res.data));
      };
 
-     
+     isBezet(date){
+         //getDate()
+        const day = date.getDate();
+        const month = date.getMonth();
+
+        let bookedDaysMonth = this.state.bestaandeBoekingen.filter(boek => boek.Maand === month).map(x => x.Dag)
+        
+        return !bookedDaysMonth.includes(day)
+
+        //return day !== 0 && day !==1 && day !== 2
+
+     }
 
         render(){
             return(
@@ -115,16 +161,26 @@ import './Boeking.css'
                             <input type="text" required className="form-control" value={this.state.land} onFocus={(e) => e.target.value === '...'? e.target.value = '': e.target.value} onChange={this.onChangeLand}/>
                         </div>
                         <div className="datepicker">
+                            <label>Begin vakantie</label>
                             <DatePicker 
-                            selected = {this.state.startdate}
+                            selected = {this.state.fulldateStart}
                             onChange={date => this.onChangeStartDate(date)}
                             dateFormat="dd-MM-yyyy"
-                            isClearable
                             placeholderText="Maak opnieuw uw keuze!"
-                            minDate={new Date()}
-                            maxDate={addDays(new Date(),5)}
+                            filterDate={this.isBezet}
                             withPortal
-                            disablePast
+                            strictParsing
+                            />
+                        </div>
+                        <div className="datepicker">
+                            <label>Einde vakantie</label>
+                            <DatePicker 
+                            selected = {this.state.fulldateEnd}
+                            onChange={date => this.onChangeEndDate(date)}
+                            dateFormat="dd-MM-yyyy"
+                            placeholderText="Maak opnieuw uw keuze!"
+                            filterDate={this.isBezet}
+                            withPortal
                             strictParsing
                             />
                         </div>

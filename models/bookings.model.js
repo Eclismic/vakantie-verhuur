@@ -4,8 +4,12 @@ const Schema = mongoose.Schema;
 
 const bookingSchema = new Schema({
   customername: { type: String, required: true },
-  startdate:{type: Date}
-}, {
+  startdateMonth:{type: Number},
+  startdateDay:{type: Number},
+  enddateMonth:{type:Number},
+  enddateDay:{type:Number},
+  period:{type:Number}
+},{
   timestamps: true,
 });
 

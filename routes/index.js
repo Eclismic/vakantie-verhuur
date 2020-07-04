@@ -65,11 +65,14 @@ router.get('/bookings', async (req,res) =>{
 });
 
 router.route('/bookings/add').post((req, res) => {
-    console.log("ga je hier in?1");
     const customername = req.body.customername;
-    const startdate = req.body.startdate;
+    const startdateMonth = req.body.startdateMonth;
+    const startdateDay = req.body.startdateDay;
+    const enddateMonth = req.body.enddateMonth;
+    const enddateDay = req.body.enddateDay;
+    const period = req.body.period;
   
-    const newBooking = new Booking({customername, startdate});
+    const newBooking = new Booking({customername, startdateMonth, startdateDay, enddateMonth, enddateDay, period});
   
     newBooking.save()
       .then(() => res.json('Boeking toegevoegd!'))
