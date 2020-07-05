@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import './Boeking.css'
+import { set } from 'lodash';
 
  class Boeking extends Component{
      constructor(props){
@@ -42,13 +43,15 @@ import './Boeking.css'
      //ophalen boekingen
      async fetchBoekingen(){
        await axios.get('/bookings/')
-        .then(res => (res.data.map((info) => this.setState({bestaandeBoekingen:[...this.state.bestaandeBoekingen, {Maand: info.startdateMonth, Dag: info.startdateDay, period: info.period}]}))))
+       .then(res => res.data.map((dataRow) => this.setState({bestaandeBoekingen: [...this.state.bestaandeBoekingen, dataRow.allVacationDays]}) ))
+
+      this.setState({bestaandeBoekingen: this.state.bestaandeBoekingen.concat.apply([], this.state.bestaandeBoekingen)})
+        //.then(res => (res.data.map((info) => this.setState({bestaandeBoekingen:[...this.state.bestaandeBoekingen, {Maand: info.startdateMonth, Dag: info.startdateDay, geboekteDagen:}]}))))
      }
 
      showBoekingen(){
-        console.log(this.state.geboekteDagen);
-        this.state.geboekteDagen.map(x => console.log(x))
-        
+        console.log(this.state.bestaandeBoekingen);
+        this.isBezet(new Date())
          //this.isBezet(this.state.fulldate)
         // console.log('state.period: ',this.state.period);
     }
@@ -112,10 +115,10 @@ import './Boeking.css'
             return date;
         }
          
-        allVacationDays.push(this.state.fulldateStart);
+        allVacationDays.push(this.state.fulldateStart.toISOString().substring(0,10));
          let counter = 1;
          while(counter <= diffDays){
-            let vakantieDag = this.state.fulldateStart.addDays(counter);
+            let vakantieDag = this.state.fulldateStart.addDays(counter).toISOString().substring(0,10);
             allVacationDays.push(vakantieDag);
             counter = counter + 1;
          }
@@ -141,8 +144,16 @@ import './Boeking.css'
          .then(res => console.log(res.data));
      };
 
-     async isBezet(date){
-         //getDate()
+       isBezet(dateparam){
+
+         let teFilterenDag = dateparam.toISOString().substring(0,10);
+         console.log('valideren', teFilterenDag);
+
+         console.log(this.state.bestaandeBoekingen.includes(teFilterenDag));
+
+         return !this.state.bestaandeBoekingen.includes(teFilterenDag);
+            
+        /*
         const day = date.getDate();
         const month = date.getMonth();
 
@@ -154,10 +165,11 @@ import './Boeking.css'
 
         //let bookedDaysMonth = this.state.bestaandeBoekingen.filter(boek => boek.Maand === month).map(x => x.Dag)
         
-        return !bookedDaysMonth.includes(day)
+       // return !bookedDaysMonth.includes(day)
 
         //return day !== 0 && day !==1 && day !== 2
-
+*/
+        
      }
 
      
@@ -192,7 +204,7 @@ import './Boeking.css'
                             onChange={date => this.onChangeStartDate(date)}
                             dateFormat="dd-MM-yyyy"
                             placeholderText="Kies uw"
-                            //filterDate={this.isBezet}
+                            filterDate={this.isBezet}
                             withPortal
                             strictParsing
                             />
@@ -204,7 +216,7 @@ import './Boeking.css'
                             onChange={date => this.onChangeEndDate(date)}
                             dateFormat="dd-MM-yyyy"
                             placeholderText="Maak opnieuw uw keuze!"
-                            //filterDate={this.isBezet}
+                            filterDate={this.isBezet}
                             withPortal
                             strictParsing
                             />
