@@ -23,7 +23,7 @@ import ReactMapGL, { Marker } from 'react-map-gl';
           {...this.state.viewport}
           mapStyle="mapbox://styles/thecjreynolds/ck117fnjy0ff61cnsclwimyay"
           onViewportChange={(viewport) => this.setState({viewport})}
-          mapboxApiAccessToken='pk.eyJ1IjoiZWNsaXNtaWMiLCJhIjoiY2tjOWV6M3h5MWtnMzJ2cml5Ympwd3UzaCJ9.2UcA0ICpBe5CEqCrUZ5PMw'
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           
         >
         <Marker 
