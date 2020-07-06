@@ -2,7 +2,13 @@
     overflow: hidden;
 }
 
+div{
+    color:#F3B73E;
+}
+
 .marker{
     stroke: #F3B73E;
 }
+
+
 
