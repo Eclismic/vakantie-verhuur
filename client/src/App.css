@@ -9,6 +9,11 @@
   */
 }
 
+.map:empty{
+  display: none;
+}
+
+
 a{
   color: #333; 
   text-decoration: none;

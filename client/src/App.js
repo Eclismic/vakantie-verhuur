@@ -28,7 +28,9 @@ class App extends Component {
             <div className="map">
                 <Route exact path="/Locatie" component={Locatie}/>
             </div>
+              <div className= "boeking">
                 <Route exact path="/Boeking" component={Boeking}/>
+              </div>
             <div className="main-footer">
                 <Footer/>
             </div>
