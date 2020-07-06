@@ -13,6 +13,7 @@ const app = express();
 const log = console.log;
 const PORT = process.env.PORT || 8080; // Step 1
 
+require('dotenv').config();
 
 // Step 2
 mongoose.connect( process.env.MONGODB_URI || 'mongodb+srv://Milco:i8vFYmLvFKFMpSHy@cluster0-o13vq.azure.mongodb.net/<dbname>?retryWrites=true&w=majority', {

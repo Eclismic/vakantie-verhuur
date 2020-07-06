@@ -1,31 +1,42 @@
 import React, { Component } from 'react'
 import './Locatie.css'
-import {Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import ReactMapGL, { Marker } from 'react-map-gl';
 
-  const style = {
-    width: '100%',
-    height: '100%',
-};
+  
 
   export class Locatie extends Component {
     
-      render() {
-        return (
-            <div className="google-maps">
-                <Map google={this.props.google}
-                                style={style}
-                                initialCenter={{
-                                lat: 53.0962203,
-                                lng: 4.7618406
-                                }}
-                                zoom={15}
-                                onClick={this.onMapClicked}>
-                                </Map>
-            </div>
-        );
+    state = {
+      viewport: {
+        width: '100vw',
+        height: '100vh',
+        latitude: 53.099893,
+        longitude: 4.7618406,
+        zoom: 12
       }
+    };
+  
+    render() {
+      return (
+        <div className='map-container'>
+          <ReactMapGL
+          {...this.state.viewport}
+          mapStyle="mapbox://styles/thecjreynolds/ck117fnjy0ff61cnsclwimyay"
+          onViewportChange={(viewport) => this.setState({viewport})}
+          mapboxApiAccessToken='pk.eyJ1IjoiZWNsaXNtaWMiLCJhIjoiY2tjOWV6M3h5MWtnMzJ2cml5Ympwd3UzaCJ9.2UcA0ICpBe5CEqCrUZ5PMw'
+          
+        >
+        <Marker 
+        latitude={53.099966} 
+        longitude={4.774596}>
+          <div>Hier zijn wij!</div>
+          <svg className="marker" viewBox="0 0 24 24" width="20" height="20" stroke="#FFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </Marker>
+        </ReactMapGL>
+        </div>
+        
+      );
+    }
   }
   
-  export default GoogleApiWrapper({
-    apiKey: ('AIzaSyCNDC-J33vQBHFRkk--Kpk2ll1RBgWBGP0')
-  })(Locatie)
+  export default Locatie

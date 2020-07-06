@@ -5,7 +5,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import './Boeking.css'
-import { set } from 'lodash';
 
  class Boeking extends Component{
      constructor(props){
