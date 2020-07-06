@@ -30,14 +30,14 @@ input[type=text], select, textarea {
   input[type=submit]:hover {
     background-color: #45a049;
   }
+
+  .react-datepicker__day{
+    background-color: green;
+    color: black;
+  }
   
-  .react-datepicker__navigation {
-    line-height: 1.7rem;
-    text-align: center;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    width: 0;
-    border: 0.45rem solid transparent;
-    z-index: 1;
-}
+  .react-datepicker__day--disabled{
+    background-color: red;
+  }
+  
+ 
