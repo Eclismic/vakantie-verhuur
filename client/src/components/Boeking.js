@@ -4,9 +4,6 @@ import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { Alert } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
-
 import './Boeking.css'
 
 class Boeking extends Component {
@@ -27,7 +24,7 @@ class Boeking extends Component {
             achternaam: '...',
             plaats: '...',
             land: '...',
-            appartement: 'Maak uw keuze',
+            appartement: 'Tweepersoons',
             fulldateStart: new Date(),
             startdateDay: new Date().getDay(),
             startdateMonth: new Date().getMonth(),
@@ -62,14 +59,14 @@ class Boeking extends Component {
             }
         }))
         
-        console.log(this.state.boekingenTweepersoons);
-        console.log(this.state.boekingenVierpersoons);
+        console.log('Twee' + this.state.boekingenTweepersoons);
+        console.log('Vier' + this.state.boekingenVierpersoons);
 
         this.setState({ boekingenTweepersoons: this.state.boekingenTweepersoons.concat.apply([], this.state.boekingenTweepersoons) })
         this.setState({ boekingenVierpersoons: this.state.boekingenVierpersoons.concat.apply([], this.state.boekingenVierpersoons) })
 
-        console.log(this.state.boekingenTweepersoons);
-        console.log(this.state.boekingenVierpersoons);
+        console.log('Twee' + this.state.boekingenTweepersoons);
+        console.log('Vier' + this.state.boekingenVierpersoons);
 
     }
 
@@ -168,9 +165,11 @@ class Boeking extends Component {
 
     isBezet(dateparam) {
         let teFilterenDag = dateparam.toISOString().substring(0, 10);
-
-        return !this.state.bestaandeBoekingen.includes(teFilterenDag);
-
+        if(this.state.appartement === 'Tweepersoons'){
+            return !this.state.boekingenTweepersoons.includes(teFilterenDag);
+        }else{
+            return !this.state.boekingenVierpersoons.includes(teFilterenDag);
+        }
     }
 
 
@@ -209,7 +208,7 @@ class Boeking extends Component {
                                 selected={this.state.fulldateStart}
                                 onChange={date => this.onChangeStartDate(date)}
                                 dateFormat="dd-MM-yyyy"
-                                placeholderText="Kies uw"
+                                placeholderText="Op de maandag en vrijdag kennen wij wisseldagen"
                                 filterDate={this.isBezet}
                                 withPortal
                                 strictParsing
@@ -221,7 +220,7 @@ class Boeking extends Component {
                                 selected={this.state.fulldateEnd}
                                 onChange={date => this.onChangeEndDate(date)}
                                 dateFormat="dd-MM-yyyy"
-                                placeholderText="Maak opnieuw uw keuze!"
+                                placeholderText="Op de maandag en vrijdag kennen wij wisseldagen"
                                 filterDate={this.isBezet}
                                 withPortal
                                 strictParsing
