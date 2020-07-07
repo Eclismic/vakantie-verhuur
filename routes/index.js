@@ -71,8 +71,9 @@ router.route('/bookings/add').post((req, res) => {
     const enddateMonth = req.body.enddateMonth;
     const enddateDay = req.body.enddateDay;
     const allVacationDays = req.body.allVacationDays;
+    const appartement = req.body.appartement;
   
-    const newBooking = new Booking({customername, startdateMonth, startdateDay, enddateMonth, enddateDay, allVacationDays});
+    const newBooking = new Booking({customername, startdateMonth, startdateDay, enddateMonth, enddateDay, allVacationDays, appartement});
   
     newBooking.save()
       .then(() => res.json('Boeking toegevoegd!'))

@@ -8,6 +8,7 @@ const bookingSchema = new Schema({
   startdateDay:{type: Number},
   enddateMonth:{type:Number},
   enddateDay:{type:Number},
+  appartement:{type:String,required: true},
   allVacationDays:{type: Array}
 },{
   timestamps: true,

@@ -2,6 +2,12 @@
   margin: 30px;
 }
 
+.container-boekingsformulier {
+  max-width: 400px;
+  align-items: center;
+}
+
+
 input[type=text], select, textarea {
     width: 100%; /* Full width */
     padding: 12px; /* Some padding */ 
@@ -23,12 +29,28 @@ input[type=text], select, textarea {
     border-radius: 4px;
     cursor: pointer;
     position: relative;
-    left: 60%;
+    left: 1;
   }
   
   /* When moving the mouse over the submit button, add a darker green color */
   input[type=submit]:hover {
     background-color: #45a049;
+  }
+
+  .appartementen option{
+    font-size:20px;
+  }
+
+  .datepicker-container{
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+ 
+  .datepicker-flex-item{
+    flex-grow:1;
   }
 
   .react-datepicker__day{
