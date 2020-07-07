@@ -8,6 +8,11 @@
   display: none;
 }
 
+.map{
+  height: 100%;
+  overflow: hidden;
+}
+
 
 a{
   color: #333; 
@@ -23,9 +28,9 @@ a{
   width: 100%;
 }
 
-
 .main-footer{
   bottom: 0;
-  height: 150px;
-  margin-top: auto;
+  height: 120px;
+  position: absolute;
+  bottom: 0;
 }

@@ -31,10 +31,12 @@ class App extends Component {
               <div className= "boeking">
                 <Route exact path="/Boeking" component={Boeking}/>
               </div>
-            <div className="main-footer">
+              <div class="clear"></div>
+            
+          </div>
+          <div className="main-footer">
                 <Footer/>
             </div>
-          </div>
         </div>
       </Router>
     );

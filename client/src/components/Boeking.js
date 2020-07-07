@@ -4,6 +4,9 @@ import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { Alert } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
+
 import './Boeking.css'
 
 class Boeking extends Component {
@@ -17,12 +20,14 @@ class Boeking extends Component {
         this.isBezet = this.isBezet.bind(this);
         this.onChangeAppartement = this.onChangeAppartement.bind(this);
 
+
+
         this.state = {
             voornaam: '...',
             achternaam: '...',
             plaats: '...',
             land: '...',
-            appartement: null,
+            appartement: 'Maak uw keuze',
             fulldateStart: new Date(),
             startdateDay: new Date().getDay(),
             startdateMonth: new Date().getMonth(),
@@ -35,19 +40,36 @@ class Boeking extends Component {
             boekingenTweepersoons: [],
             boekingenVierpersoons: []
         }
+
     }
+
+
+
 
     componentDidMount() {
         this.fetchBoekingen();
+
     }
 
     //ophalen boekingen
     async fetchBoekingen() {
         await axios.get('/bookings/')
-            .then(res => res.data.map((dataRow) => this.setState({ bestaandeBoekingen: [...this.state.bestaandeBoekingen, dataRow.allVacationDays] })))
+        .then(res => res.data.map((dataRow) => {
+            if(dataRow.appartement === 'Tweepersoons'){
+                this.setState({boekingenTweepersoons: [...this.state.boekingenTweepersoons, dataRow.allVacationDays]})
+            } else if(dataRow.appartement === 'Vierpersoons'){
+                this.setState({boekingenVierpersoons: [...this.state.boekingenVierpersoons, dataRow.allVacationDays]})
+            }
+        }))
+        
+        console.log(this.state.boekingenTweepersoons);
+        console.log(this.state.boekingenVierpersoons);
 
-        this.setState({ bestaandeBoekingen: this.state.bestaandeBoekingen.concat.apply([], this.state.bestaandeBoekingen) })
+        this.setState({ boekingenTweepersoons: this.state.boekingenTweepersoons.concat.apply([], this.state.boekingenTweepersoons) })
+        this.setState({ boekingenVierpersoons: this.state.boekingenVierpersoons.concat.apply([], this.state.boekingenVierpersoons) })
 
+        console.log(this.state.boekingenTweepersoons);
+        console.log(this.state.boekingenVierpersoons);
 
     }
 
@@ -100,7 +122,6 @@ class Boeking extends Component {
             })
         }
     }
-
 
     async addBooking(e) {
         e.preventDefault();
@@ -156,7 +177,6 @@ class Boeking extends Component {
 
     render() {
         return (
-
             <div className="container-boekingsformulier">
                 <h3>Boek hier uw verblijf</h3>
                 <form onSubmit={this.addBooking}>
@@ -179,8 +199,8 @@ class Boeking extends Component {
                     <label >Kies uw appartement:</label>
                     <select className="appartementen" form="appartementenform" defaultValue="kies-appartement" onChange={this.onChangeAppartement}>
                         <option disabled value="kies-appartement"> -- maak uw keuze -- </option>
-                        <option value={this.state.appartement}>Tweepersoons</option>
-                        <option value={this.state.appartement}>Vierpersoons</option>
+                        <option>Tweepersoons</option>
+                        <option>Vierpersoons</option>
                     </select>
                     <div className="datepicker-container">
                         <div className="datepicker-fixed">

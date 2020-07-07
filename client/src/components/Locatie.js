@@ -9,10 +9,10 @@ import ReactMapGL, { Marker } from 'react-map-gl';
     state = {
       viewport: {
         width: '100vw',
-        height: '90vh',
+        height: '85vh',
         latitude: 53.099893,
         longitude: 4.7618406,
-        zoom: 12
+        zoom: 12,
       }
     };
   
