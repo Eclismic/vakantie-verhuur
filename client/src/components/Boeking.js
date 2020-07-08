@@ -4,8 +4,6 @@ import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import './Boeking.css'
-
 class Boeking extends Component {
     constructor(props) {
         super(props);
@@ -201,6 +199,9 @@ class Boeking extends Component {
                         <option>Tweepersoons</option>
                         <option>Vierpersoons</option>
                     </select>
+                    <div className="gekozen-appartement">
+                         <h3>Onderstaand kunt u zien wat er vrij is voor {this.state.appartement}</h3>
+                    </div>
                     <div className="datepicker-container">
                         <div className="datepicker-fixed">
                             <label>Begin vakantie</label>

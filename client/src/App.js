@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './App.css';
 import Header from './components/Header'
 import ContentBlockOne from './components/Tweepersoons';
 import ContentBlockTwo from './components/Vierpersoons';

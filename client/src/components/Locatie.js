@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './Locatie.css'
 import ReactMapGL, { Marker } from 'react-map-gl';
 
   
