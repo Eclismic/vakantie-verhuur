@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactMapGL, { Marker } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
   
 
@@ -23,7 +24,6 @@ import ReactMapGL, { Marker } from 'react-map-gl';
           mapStyle="mapbox://styles/thecjreynolds/ck117fnjy0ff61cnsclwimyay"
           onViewportChange={(viewport) => this.setState({viewport})}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          
         >
         <Marker 
         latitude={53.099966} 

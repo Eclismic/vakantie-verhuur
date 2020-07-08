@@ -133,7 +133,6 @@ nav{
 
 .map-container div{
   color:#F3B73E;
-  padding-bottom: 2.5rem;
 }
 
 .marker{
@@ -142,11 +141,6 @@ nav{
 
 .map:empty{
   display: none;
-}
-
-.map{
-  height: 100%;
-  overflow: hidden;
 }
 
 
