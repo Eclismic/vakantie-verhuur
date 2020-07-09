@@ -146,8 +146,9 @@ nav{
 
 
 
-
-
+.boeking{
+  align-items: left;
+}
 
 .container-boekingsformulier h3{
   margin: 30px;
@@ -155,10 +156,8 @@ nav{
 
 .container-boekingsformulier {
   max-width: 400px;
-  align-items: center;
   padding-bottom: 100px;
 }
-
 
 input[type=text], select, textarea {
     width: 100%; /* Full width */
@@ -194,7 +193,11 @@ input[type=text], select, textarea {
   }
 
   .gekozen-appartement{
+    text-align: center;
+    width: 80vw;
     width: 100vw;
+    position: relative;
+    left: calc(-50vw + 50%);
   }
 
   .datepicker-container{

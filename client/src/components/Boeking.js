@@ -4,6 +4,8 @@ import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import emailjs from 'emailjs-com';
+
 class Boeking extends Component {
     constructor(props) {
         super(props);
@@ -11,9 +13,11 @@ class Boeking extends Component {
         this.onChangeVoornaam = this.onChangeVoornaam.bind(this);
         this.onChangeAchternaam = this.onChangeAchternaam.bind(this);
         this.onChangePlaats = this.onChangePlaats.bind(this);
+        this.onChangeLand = this.onChangeLand.bind(this);
         this.addBooking = this.addBooking.bind(this);
         this.isBezet = this.isBezet.bind(this);
         this.onChangeAppartement = this.onChangeAppartement.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
 
 
 
@@ -49,22 +53,17 @@ class Boeking extends Component {
     //ophalen boekingen
     async fetchBoekingen() {
         await axios.get('/bookings/')
-        .then(res => res.data.map((dataRow) => {
-            if(dataRow.appartement === 'Tweepersoons'){
-                this.setState({boekingenTweepersoons: [...this.state.boekingenTweepersoons, dataRow.allVacationDays]})
-            } else if(dataRow.appartement === 'Vierpersoons'){
-                this.setState({boekingenVierpersoons: [...this.state.boekingenVierpersoons, dataRow.allVacationDays]})
-            }
-        }))
-        
-        console.log('Twee' + this.state.boekingenTweepersoons);
-        console.log('Vier' + this.state.boekingenVierpersoons);
+            .then(res => res.data.map((dataRow) => {
+                if (dataRow.appartement === 'Tweepersoons') {
+                    this.setState({ boekingenTweepersoons: [...this.state.boekingenTweepersoons, dataRow.allVacationDays] })
+                } else if (dataRow.appartement === 'Vierpersoons') {
+                    this.setState({ boekingenVierpersoons: [...this.state.boekingenVierpersoons, dataRow.allVacationDays] })
+                }
+            }))
+
 
         this.setState({ boekingenTweepersoons: this.state.boekingenTweepersoons.concat.apply([], this.state.boekingenTweepersoons) })
         this.setState({ boekingenVierpersoons: this.state.boekingenVierpersoons.concat.apply([], this.state.boekingenVierpersoons) })
-
-        console.log('Twee' + this.state.boekingenTweepersoons);
-        console.log('Vier' + this.state.boekingenVierpersoons);
 
     }
 
@@ -121,28 +120,9 @@ class Boeking extends Component {
     async addBooking(e) {
         e.preventDefault();
 
-        const oneDay = 24 * 60 * 60 * 1000;
-        const diffDays = Math.round(Math.abs((this.state.fulldateStart - this.state.fulldateEnd) / oneDay));
-        const allVacationDays = [];
+        await this.getAllBookDates()
+            console.log("komt nu eerst??")
 
-        Date.prototype.addDays = function (days) {
-            var date = new Date(this.valueOf());
-            date.setDate(date.getDate() + days);
-            return date;
-        }
-
-        allVacationDays.push(this.state.fulldateStart.toISOString().substring(0, 10));
-        let counter = 1;
-        while (counter <= diffDays) {
-            let vakantieDag = this.state.fulldateStart.addDays(counter).toISOString().substring(0, 10);
-            allVacationDays.push(vakantieDag);
-            counter = counter + 1;
-        }
-
-
-        await this.setState({
-            geboekteDagen: allVacationDays
-        })
 
 
         const boeking = {
@@ -158,18 +138,74 @@ class Boeking extends Component {
         console.log(boeking);
 
         axios.post('/bookings/add', boeking)
-            .then(res => console.log(res.data));
+            .then((res) => {
+                console.log(res.data);
+                //this.sendMessage();
+            }
+            );
     };
+
+    async getAllBookDates() {
+        return new Promise((resolve, reject) => {
+
+            console.log("komen we hier in");
+            const oneDay = 24 * 60 * 60 * 1000;
+            const diffDays = Math.round(Math.abs((this.state.fulldateStart - this.state.fulldateEnd) / oneDay));
+            const allVacationDays = [];
+
+            Date.prototype.addDays = function (days) {
+                var date = new Date(this.valueOf());
+                date.setDate(date.getDate() + days);
+                return date;
+            }
+
+            allVacationDays.push(this.state.fulldateStart.toISOString().substring(0, 10));
+            let counter = 1;
+            while (counter <= diffDays) {
+                let vakantieDag = this.state.fulldateStart.addDays(counter).toISOString().substring(0, 10);
+                allVacationDays.push(vakantieDag);
+                counter = counter + 1;
+            }
+
+            resolve(this.setState({
+                geboekteDagen: allVacationDays
+            }, () => console.log(this.state.geboekteDagen)))
+
+        })
+    }
+
 
     isBezet(dateparam) {
         let teFilterenDag = dateparam.toISOString().substring(0, 10);
-        if(this.state.appartement === 'Tweepersoons'){
+        if (this.state.appartement === 'Tweepersoons') {
+            console.log(teFilterenDag + this.state.boekingenTweepersoons.includes(teFilterenDag));
             return !this.state.boekingenTweepersoons.includes(teFilterenDag);
-        }else{
+        } else {
             return !this.state.boekingenVierpersoons.includes(teFilterenDag);
         }
-    }
+    };
 
+
+    //send email
+    sendMessage() {
+
+        const templateParams = {
+            from_name: this.state.voornaam,
+            to_name: "milcokats@gmail.com"
+        };
+
+        emailjs
+            .send("gmail", "template_FWsMu9Vo", templateParams, "user_NLpRcuoPFiAcI81sxdIwx")
+            .then(
+                function (response) {
+                    console.log("SUCCESS!", response.status, response.text);
+                },
+                function (err) {
+                    console.log("Your message was not able to be sent" + err);
+                }
+            );
+
+    };
 
 
     render() {
@@ -200,7 +236,7 @@ class Boeking extends Component {
                         <option>Vierpersoons</option>
                     </select>
                     <div className="gekozen-appartement">
-                         <h3>Onderstaand kunt u zien wat er vrij is voor {this.state.appartement}</h3>
+                        <h3>Onderstaand kunt u zien wat er vrij is voor {this.state.appartement}</h3>
                     </div>
                     <div className="datepicker-container">
                         <div className="datepicker-fixed">
