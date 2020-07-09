@@ -14,12 +14,10 @@ class Boeking extends Component {
         this.onChangeAchternaam = this.onChangeAchternaam.bind(this);
         this.onChangePlaats = this.onChangePlaats.bind(this);
         this.onChangeLand = this.onChangeLand.bind(this);
-        this.addBooking = this.addBooking.bind(this);
+        this.processBooking = this.processBooking.bind(this)
         this.isBezet = this.isBezet.bind(this);
         this.onChangeAppartement = this.onChangeAppartement.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
-
-
 
         this.state = {
             voornaam: '...',
@@ -42,12 +40,8 @@ class Boeking extends Component {
 
     }
 
-
-
-
     componentDidMount() {
         this.fetchBoekingen();
-
     }
 
     //ophalen boekingen
@@ -60,7 +54,6 @@ class Boeking extends Component {
                     this.setState({ boekingenVierpersoons: [...this.state.boekingenVierpersoons, dataRow.allVacationDays] })
                 }
             }))
-
 
         this.setState({ boekingenTweepersoons: this.state.boekingenTweepersoons.concat.apply([], this.state.boekingenTweepersoons) })
         this.setState({ boekingenVierpersoons: this.state.boekingenVierpersoons.concat.apply([], this.state.boekingenVierpersoons) })
@@ -117,38 +110,22 @@ class Boeking extends Component {
         }
     }
 
-    async addBooking(e) {
-        e.preventDefault();
+    async processBooking(e) {
+        e.preventDefault()
 
         await this.getAllBookDates()
-            console.log("komt nu eerst??")
 
-
-
-        const boeking = {
-            customername: this.state.voornaam,
-            startdateMonth: this.state.startdateMonth,
-            startdateDay: this.state.startdateDay,
-            enddateMonth: this.state.enddateMonth,
-            enddateDay: this.state.enddateDay,
-            allVacationDays: this.state.geboekteDagen,
-            appartement: this.state.appartement
+        try{
+            await this.checkForConflict()
+            this.addBooking()
+        }catch(e){
+            console.log(e)
         }
-
-        console.log(boeking);
-
-        axios.post('/bookings/add', boeking)
-            .then((res) => {
-                console.log(res.data);
-                //this.sendMessage();
-            }
-            );
     };
 
     async getAllBookDates() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
 
-            console.log("komen we hier in");
             const oneDay = 24 * 60 * 60 * 1000;
             const diffDays = Math.round(Math.abs((this.state.fulldateStart - this.state.fulldateEnd) / oneDay));
             const allVacationDays = [];
@@ -174,11 +151,42 @@ class Boeking extends Component {
         })
     }
 
+    async checkForConflict(){
+        return new Promise((resolve, reject) =>{
+            this.state.geboekteDagen.map(dag => {
+                if(this.state.appartement === 'Tweepersoons'){
+                    this.state.boekingenTweepersoons.includes(dag) ? reject('Tweepersoons huisje is al geboekt voor deze periode...') : resolve('Tweepersoons huisje is deze periode vrij!')
+                }else{
+                    this.state.boekingenVierpersoons.includes(dag) ? reject('Vierpersoons huisje is al geboekt voor deze periode...') : resolve('Vierpersoons huisje is deze periode vrij!')
+                }
+            })
+        })
+        
+    }
 
+    addBooking(){
+        const boeking = {
+            customername: this.state.voornaam,
+            startdateMonth: this.state.startdateMonth,
+            startdateDay: this.state.startdateDay,
+            enddateMonth: this.state.enddateMonth,
+            enddateDay: this.state.enddateDay,
+            allVacationDays: this.state.geboekteDagen,
+            appartement: this.state.appartement
+        }
+
+        console.log(boeking);
+
+        axios.post('/bookings/add', boeking)
+            .then((res) => {
+                console.log(res.data);
+                //this.sendMessage();
+            });
+    }
+        
     isBezet(dateparam) {
         let teFilterenDag = dateparam.toISOString().substring(0, 10);
         if (this.state.appartement === 'Tweepersoons') {
-            console.log(teFilterenDag + this.state.boekingenTweepersoons.includes(teFilterenDag));
             return !this.state.boekingenTweepersoons.includes(teFilterenDag);
         } else {
             return !this.state.boekingenVierpersoons.includes(teFilterenDag);
@@ -212,7 +220,7 @@ class Boeking extends Component {
         return (
             <div className="container-boekingsformulier">
                 <h3>Boek hier uw verblijf</h3>
-                <form onSubmit={this.addBooking}>
+                <form onSubmit={this.processBooking}>
                     <div className="form-group">
                         <label>Voornaam</label>
                         <input type="text" required className="form-control" value={this.state.voornaam} onFocus={(e) => e.target.value === '...' ? e.target.value = '' : e.target.value} onChange={this.onChangeVoornaam} />
