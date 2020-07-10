@@ -115,12 +115,10 @@ class Boeking extends Component {
 
         await this.getAllBookDates()
 
-        try{
+        
             await this.checkForConflict()
-            this.addBooking()
-        }catch(e){
-            console.log(e)
-        }
+            .then(() => this.addBooking())
+            .catch(err => console.log(err))
     };
 
     async getAllBookDates() {
