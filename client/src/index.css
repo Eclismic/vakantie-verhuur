@@ -70,6 +70,11 @@ nav{
 }
 
 
+
+
+
+
+
 .content-container-tweepersoons{
   position: relative;
   display: flex;
@@ -97,6 +102,12 @@ nav{
 
 .nav-link-tweepersoons:active{
   color:teal;
+}
+
+.background-image{
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
 }
 
 
@@ -209,6 +220,7 @@ input[type=text], select, textarea {
 
  
   .datepicker-flex-item{
+    padding: 5px;
     flex-grow:1;
   }
 

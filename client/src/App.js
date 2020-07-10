@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Header from './components/Header'
+import Homepage from './components/Homepage'
 import ContentBlockOne from './components/Tweepersoons';
 import ContentBlockTwo from './components/Vierpersoons';
 import Footer from './components/Footer';
@@ -20,6 +21,9 @@ class App extends Component {
         <div className="App"> 
           <div className="page-container">
             <Header/>
+            <div className="Home">
+                <Route exact path="/" component={Homepage}/>
+            </div>
             <div className="content">
                 <Route exact path="/Tweepersoons" component={ContentBlockOne}/>
                 <Route exact path="/Vierpersoons" component={ContentBlockTwo}/>
