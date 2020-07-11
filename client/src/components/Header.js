@@ -6,7 +6,9 @@ function Header() {
         <header>
             <nav className="navBar">
                 <div>
-                    <h4>Vakantie op Texel</h4>
+                    <Link to="/">
+                        <h4>Vakantie op Texel</h4>
+                    </Link>
                 </div>
                 <ul>
                     <Link to="/Tweepersoons">

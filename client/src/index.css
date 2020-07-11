@@ -69,16 +69,20 @@ nav{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-
-
-
-
+/*
+*
+*
+Content Tweepersoons
+*
+*
+*/
 
 .content-container-tweepersoons{
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 400px;
+  width: 400px;
   border: 2px solid rgb(58, 2, 2);
   margin: 40px;
   padding: 2.5rem 0px 100px 0px;
@@ -93,31 +97,42 @@ nav{
   padding: 3px;
   margin: 2px;
   background-color: bisque;
+  transition: all 0.3s ease 0s;
 }
 
 .nav-link-tweepersoons:hover{
   background-color: rgb(253, 214, 166);
   font-style: bold;
+  transform: scale(1.02);
 }
 
 .nav-link-tweepersoons:active{
   color:teal;
 }
 
-.background-image{
-  max-width: 100%;
-  height: auto;
-  width: auto\9; /* ie8 */
-}
 
 
 
+
+/*
+*
+*
+Content Vierpersoons
+*
+*
+*/
 
 .content-container-vierpersoons{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 400px;
   border: 2px solid rgb(58, 2, 2);
   margin: 40px;
   padding: 2.5rem 0px 100px 0px;
   text-align: center;
+  align-items: center;
 }
 
 .nav-link-vierpersoons{
@@ -127,11 +142,13 @@ nav{
   padding: 3px;
   margin: 2px;
   background-color: bisque;
+  transition: all 0.3s ease 0s;
 }
 
 .nav-link-vierpersoons:hover{
   background-color: rgb(253, 214, 166);
   font-style: bold;
+  transform: scale(1.02);
 }
 
 .nav-link-vierpersoons:active{
@@ -192,11 +209,13 @@ input[type=text], select, textarea {
     cursor: pointer;
     position: relative;
     left: 1;
+    transition: all 0.3s ease 0s;
   }
   
   /* When moving the mouse over the submit button, add a darker green color */
   input[type=submit]:hover {
     background-color: #45a049;
+    transform: scale(1.02);
   }
 
   .appartementen option{

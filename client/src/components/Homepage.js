@@ -1,20 +1,19 @@
 import React from 'react'
-import foto from '../img/woestijn.jpeg'
+import woestijn from '../img/woestijn.jpeg'
+import zee from '../img/zee.jpeg'
 import './Homepage.css'
 
  const Homepage = () => {
     return (
     <div className = "homepage-container">
-            <div>
-            <img src={foto} className="background-image"/>
-            </div>
+        <div className="homepage-section-one" >
             <div className="text">
                     <div>
-                    Vakantiehuisjes
+                         Vakantiehuisjes
                     </div> 
             <div> 
-
                 <span>Mienterglop 13, De Koog</span>
+            </div>
             </div>
         </div>  
     </div>
