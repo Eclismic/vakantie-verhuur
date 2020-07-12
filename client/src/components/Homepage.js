@@ -7,6 +7,7 @@ import './Homepage.css'
     return (
     <div className = "homepage-container">
         <div className="homepage-section-one" >
+           
             <div className="text">
                     <div>
                          Vakantiehuisjes
