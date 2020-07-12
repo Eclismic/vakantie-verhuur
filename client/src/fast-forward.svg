@@ -1,23 +1,7 @@
-import React from 'react'
-import woestijn from '../img/woestijn.jpeg'
-import zee from '../img/zee.jpeg'
-import './Homepage.css'
-
- const Homepage = () => {
-    return (
-    <div className = "homepage-container">
-        <div className="homepage-section-one" >
-            <div className="text">
-                    <div>
-                         Vakantiehuisjes
-                    </div> 
-            <div> 
-                <span>Mienterglop 13, De Koog</span>
-            </div>
-            </div>
-            <div className="scroll-down">
-            <svg 
-	 viewBox="0 0 512 512" >
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <g>
 	<g>
 		<path d="M487.99,220.156L282.65,14.817c-19.758-19.756-51.904-19.756-71.662,0c-19.757,19.758-19.757,51.905,0,71.663
@@ -85,10 +69,3 @@ import './Homepage.css'
 <g>
 </g>
 </svg>
-            </div>
-        </div>  
-    </div>
-    )
-}
-
-export default Homepage
