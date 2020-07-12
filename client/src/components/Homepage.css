@@ -11,6 +11,7 @@
     
     align-items: center;
     
+    
 }
 
   .homepage-section-one{
@@ -75,10 +76,10 @@
  .scroll-down{
     width: 100px;
     height: 100px;
-    margin-left: 50%;
-    margin-right: 50%;
+    left: 50%;
     transform: rotate(90deg);
-    margin-top: 150px;
+    position: absolute;
+    bottom: 250px;
  }
   
   
