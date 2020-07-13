@@ -16,8 +16,8 @@ import './Homepage.css'
             </div>
             </div>
             <div className="scroll-down">
-            <svg 
-	 viewBox="0 0 512 512" >
+				<button>
+            <svg width="100px" height="150px" viewBox="0 0 512 512" >
 <g>
 	<g>
 		<path d="M487.99,220.156L282.65,14.817c-19.758-19.756-51.904-19.756-71.662,0c-19.757,19.758-19.757,51.905,0,71.663
@@ -85,6 +85,7 @@ import './Homepage.css'
 <g>
 </g>
 </svg>
+</button>
             </div>
         </div>  
     </div>

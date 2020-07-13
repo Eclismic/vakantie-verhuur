@@ -69,9 +69,6 @@
   80% {opacity:1;}
   100% {opacity:0;width:355px;}
   }
-  
-
- 
 
  .scroll-down{
     width: 100px;
@@ -80,7 +77,24 @@
     transform: rotate(90deg);
     position: absolute;
     bottom: 250px;
+    animation: bounce 2s infinite;
+    animation-direction: alternate-reverse;
+    
  }
+
+ button{
+    opacity: 0.75;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline:none;
+ }
+
+  @keyframes bounce {
+   from { bottom: 300px;}
+   to{bottom:330px;}
+   }
   
+   
   
   
