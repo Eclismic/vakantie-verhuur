@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Galada&display=swap');
 
+
+
 .homepage-container{
    height: 100vh;
    width: 100vw;
@@ -8,13 +10,15 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    
+    scroll-behavior: smooth;
     align-items: center;
     
     
 }
 
   .homepage-section-one{
+     height: 100vh;
+     width: 100vw;
      text-align: center;
      align-items: center;
 }
@@ -93,6 +97,11 @@
   @keyframes bounce {
    from { bottom: 300px;}
    to{bottom:330px;}
+   }
+
+   .homepage-section-two{
+      height: 100vh;
+      width: 100vw;
    }
   
    

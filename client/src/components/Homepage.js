@@ -16,7 +16,7 @@ import './Homepage.css'
             </div>
             </div>
             <div className="scroll-down">
-				<button>
+				<a href="#section-two">
             <svg width="100px" height="150px" viewBox="0 0 512 512" >
 <g>
 	<g>
@@ -85,9 +85,12 @@ import './Homepage.css'
 <g>
 </g>
 </svg>
-</button>
+</a>
             </div>
         </div>  
+		<div className="homepage-section-two" id="section-two">
+			<h4 >Homepage section</h4>
+		</div>
     </div>
     )
 }
