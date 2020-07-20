@@ -129,23 +129,43 @@ Content Vierpersoons
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 400px;
-  width: 400px;
   border: 2px solid rgb(58, 2, 2);
-  margin: 40px;
-  padding: 2.5rem 0px 100px 0px;
   text-align: center;
   align-items: center;
+  overflow: hidden;
+  height: 90vh;
+  width: 100vw;
+}
+.content-vierpersoons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.kenmerken-details{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.kenmerken-details .key p{
+  text-align: left;
+  padding-right: 50px;
+}
+
+.kenmerken-details .value p{
+  text-align: left;
+}
+
+.knop-boeken{
+  margin: 10px;
 }
 
 .nav-link-vierpersoons{
-  position: absolute;
-  bottom:0;
   border: 2px solid black;
   padding: 3px;
   margin: 2px;
   background-color: bisque;
   transition: all 0.3s ease 0s;
+  padding: 5px;
 }
 
 .nav-link-vierpersoons:hover{
@@ -158,10 +178,55 @@ Content Vierpersoons
   color:teal;
 }
 
+.content-two-images {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 100vw;
+  position: relative;
+  left: calc(-50vw + 50%);
+  max-height: 400px;
+  border: 3px solid rgb(196, 186, 186);
+  position: absolute;
+  bottom: 90px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.content-two-images::-webkit-scrollbar{
+  display: none;
+}
+
+#newYork{
+  max-height: 400px;;
+  height: 400px;
+  max-width: 400px;
+}
+
+#zee{
+  max-height: 400px;;
+  height: 400px;
+  width: 400px;
+}
+
+#rainSea{
+  max-height: 400px;;
+  height: 400px;
+  width: 400px;
+}
+
+#woestijn{
+  max-height: 400px;;
+  height: 400px;
+  width: 400px;
+}
 
 
-
-
+/*
+*
+*
+* Map - locatie
+*
+*/
 .map-container div{
   color:#F3B73E;
 }

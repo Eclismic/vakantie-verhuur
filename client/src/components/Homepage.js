@@ -89,7 +89,15 @@ import './Homepage.css'
             </div>
         </div>  
 		<div className="homepage-section-two" id="section-two">
-			<h4 >Homepage section</h4>
+			<div className="section-two-column-one">	
+				<h4>Section one</h4>
+			</div>
+			<div className="section-two-column-two">
+				<h4>Section two</h4>
+			</div>
+			<div className="section-two-column-three">
+				<h4>Section three</h4>
+			</div>
 		</div>
     </div>
     )
