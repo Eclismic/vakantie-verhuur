@@ -35,9 +35,7 @@ class App extends Component {
                 <Route exact path="/Boeking" component={Boeking}/>
               </div>
           </div>
-          <div className="main-footer">
-                <Footer/>
-            </div>
+          
         </div>
       </Router>
     );

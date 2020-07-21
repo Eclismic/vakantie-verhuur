@@ -1,11 +1,11 @@
 import React from 'react'
-import woestijn from '../img/woestijn.jpeg'
-import zee from '../img/zee.jpeg'
 import './Homepage.css'
+import Footer from './Footer.js'
 
  const Homepage = () => {
     return (
     <div className = "homepage-container">
+		<Footer/>
         <div className="homepage-section-one" >
             <div className="text">
                     <div>
@@ -99,6 +99,8 @@ import './Homepage.css'
 				<h4>Section three</h4>
 			</div>
 		</div>
+
+		
     </div>
     )
 }
