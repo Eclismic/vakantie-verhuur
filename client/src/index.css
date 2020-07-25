@@ -186,46 +186,42 @@ Content Vierpersoons
 *
 *
 */
-.parent-vierpersoons::-webkit-scrollbar{
-  display: none;
-}
+
 
 .content-container-vierpersoons{
   position: relative;
   display: flex;
   flex-direction: column;
-  border: 2px solid rgb(58, 2, 2);
   height: 100vh;
   width: 100vw;
+  margin: 0 auto;
+}
+
+.slides{
+  padding: 20px;
+  margin: 50px;
+  background-color: grey;
+  align-items: center;
+}
+
+.slider-container{
+  align-items: center;
+  background-color: hotpink;
+}
+
+.slick-slide.slick-center img {
+  transform: scale(1.1);
 }
 .content-vierpersoons{
-  display: grid;
   grid-template-columns: 60% 40%;
-  
-}
-
-.content-beschrijving{
-  overflow-y: scroll;
-  margin-bottom: 5px;
-}
-
-.content-beschrijving::-webkit-scrollbar{
-  display: none;
-}
-
-.beschrijving-titel{
-  margin-left: 10px;
-}
-
-.beschrijving-details{
-  
-  margin-left: 10px;
+  text-align: center;
 }
 
 .content-kenmerken{
   overflow-y: scroll;
   margin-bottom: 5px;
   max-height: 60vh;
+  margin-left: 10px;
 }
 
 .content-kenmerken::-webkit-scrollbar{
@@ -275,14 +271,13 @@ Content Vierpersoons
 .content-two-images {
   display:flex;
   width: 100vw;
-  left: calc(-50vw + 50%);
   max-height: 400px;
   min-height: 200px;
-  border: 3px solid rgb(196, 186, 186);
   margin-top:auto;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  box-sizing: border-box;
 }
+
+
 
 .content-two-images::-webkit-scrollbar{
   display: none;

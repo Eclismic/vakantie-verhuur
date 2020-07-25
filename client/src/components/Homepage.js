@@ -96,7 +96,32 @@ import Footer from './Footer.js'
 				<h4>Section two</h4>
 			</div>
 			<div className="section-two-column-three">
-				<h4>Section three</h4>
+			<div className="beschrijving-details">
+                        <p style={{fontWeight: 'bold'}}>Ligging:</p> 
+                        <p>De zeven dorpen van Texel zijn ieder omringd door heel veel natuur.</p>
+                        <p>Badplaats De Koog grenst aan een uitgestrekt duingebied, bos en landerijen.</p>
+                        <p>Uw vakantiehuis is rustig en landelijk gelegen aan de rand van De Koog.</p>
+                        <p>Het is een prima uitvalsbasis om de Texelse natuur te ontdekken: de natuurgebieden:</p>
+                        <p>De Nederlanden, De Muy en De Slufter liggen in de omgeving. Op het brede pad</p>
+                        <p>van De Nederlanden naar De Slufter kunt u heerlijk wandelen en fietsen.</p>
+                        <p>Vanaf uw vakantiehuis fietst u binnen 5 minuten naar het uitgestrekte Noordzeestrand.</p>
+                        <p>Als u op Texel bent wilt u natuurlijk ook zeehonden zien. Bij zeehondenopvangcentrum</p>
+                        <p>Ecomare - op 5 kilometer van uw vakantiehuis - kan dat van heel dichtbij.</p>
+                        <br></br>
+                        <p style={{fontWeight: 'bold'}}>Indeling:</p>
+                        <p>De woonkamer is voorzien van zithoek met tv. Er is ook een eethoek.</p>
+                        <p>De keuken is ingericht met koelkast, magnetron, filter koffiezetapparaat en waterkoker.</p>
+                        <p>Er is een slaapkamer met 1 tweepersoons bed. De badkamer heeft een douche en toilet.</p>
+                        <p>Op de bovenverdieping zijn twee slaapkamers met elk 2 eenpersoons bedden en een wastafel.</p>
+                        <p>Dit vakantiehuis heeft een tuin met terras. Tuinmeubilair is aanwezig.</p>
+                        <br></br>
+                        <p style={{fontWeight: 'bold'}}>Extra’s:</p>
+                        <p>Digitenne tv. De bedden zijn bij aankomst opgemaakt.</p>
+                        <br></br>
+                        <p style={{fontWeight: 'bold'}}>Bijzonderheden:</p>
+                        <p>Jongeren onder de 20 jaar zijn welkom als de ouders de gehele periode aanwezig zijn.</p>
+                        <p>Bij het schoon achterlaten van het vakantiehuis worden er geen schoonmaakkosten in rekening gebracht.</p>
+                    </div>
 			</div>
 		</div>
 
