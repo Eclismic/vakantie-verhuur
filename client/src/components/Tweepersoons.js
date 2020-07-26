@@ -1,41 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 
-export default function ContentBlockOne() {
+
+
+
+ function ContentBlockOne() {
+    const sliderArr = [1,2,3,4,5]
+    const [x,setX] = useState(0);
+
+    const goLeft = () => {
+        x === 0 ? setX(-100 * (sliderArr.length -1)) : setX(x + 100);
+    };
+
+    const goRight = () => {
+        x === -100 * (sliderArr.length -1) ? setX(0) : setX(x - 100);
+    };
+
+
     return (
         <div className= "parent-tweepersoons">
           <div className="content-container-tweepersoons">
             <div className="content-tweepersoons">
-                <div className="content-beschrijving">
-                    <div className= "beschrijving-titel">
-                        <h3>Vierpersoons</h3>
-                    </div>
-                    <div className="beschrijving-details">
-                        <p style={{fontWeight: 'bold'}}>Ligging:</p> 
-                        <p>De zeven dorpen van Texel zijn ieder omringd door heel veel natuur.</p>
-                        <p>Badplaats De Koog grenst aan een uitgestrekt duingebied, bos en landerijen.</p>
-                        <p>Uw vakantiehuis is rustig en landelijk gelegen aan de rand van De Koog.</p>
-                        <p>Het is een prima uitvalsbasis om de Texelse natuur te ontdekken: de natuurgebieden:</p>
-                        <p>De Nederlanden, De Muy en De Slufter liggen in de omgeving. Op het brede pad</p>
-                        <p>van De Nederlanden naar De Slufter kunt u heerlijk wandelen en fietsen.</p>
-                        <p>Vanaf uw vakantiehuis fietst u binnen 5 minuten naar het uitgestrekte Noordzeestrand.</p>
-                        <p>Als u op Texel bent wilt u natuurlijk ook zeehonden zien. Bij zeehondenopvangcentrum</p>
-                        <p>Ecomare - op 5 kilometer van uw vakantiehuis - kan dat van heel dichtbij.</p>
-                        <br></br>
-                        <p style={{fontWeight: 'bold'}}>Indeling:</p>
-                        <p>De woonkamer is voorzien van zithoek met tv. Er is ook een eethoek.</p>
-                        <p>De open keuken is ingericht met koelkast, magnetron en kooktoestel.</p>
-                        <p>Er zijn twee slaapkamers met elk 2 eenpersoonsbedden. De badkamer heeft een douche en toilet.</p>
-                        <p>Deze bungalow heeft een tuin met terras. Tuinmeubilair is aanwezig.</p>
-                        <p></p>
-                        <br></br>
-                        <p style={{fontWeight: 'bold'}}>Extra’s:</p>
-                        <p>Digitenne tv. De bedden zijn bij aankomst opgemaakt.</p>
-                        <br></br>
-                        <p style={{fontWeight: 'bold'}}>Bijzonderheden:</p>
-                        <p>Jongeren onder de 20 jaar zijn welkom als de ouders de gehele periode aanwezig zijn.</p>
-                        <p>Bij het schoon achterlaten van het vakantiehuis worden er geen schoonmaakkosten in rekening gebracht.</p>
-                    </div>
+                <div className="slider">{
+                    sliderArr.map((item,index) => {
+                       return <div key = {index} className="slide" style={{transform: `translateX(${x}%)`}}>
+                            {item}
+                        </div>    
+                    }
+                    )
+                }
+                <button id="goLeft" onClick={goLeft}>links</button>
+                <button id="goRight" onClick={goRight}>rechts</button>
+                
                 </div>
                 <div className="content-kenmerken">
                     <div className="kenmerken-titel">
@@ -129,3 +125,5 @@ export default function ContentBlockOne() {
         </div>
     )
 }
+
+export default ContentBlockOne
