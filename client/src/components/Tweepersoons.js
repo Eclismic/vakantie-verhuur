@@ -36,8 +36,12 @@ import woonkamer from "../img/tweepersoonsWoonkamer.jpg"
                     }
                     )
                 }
-                <button id="goLeft" onClick={goLeft}>links</button>
-                <button id="goRight" onClick={goRight}>rechts</button>
+                <button id="goLeft" onClick={goLeft}>
+                <i className="fa fa-chevron-left fa-5x"></i>
+                </button>
+                <button id="goRight" onClick={goRight}>
+                <i className="fa fa-chevron-right fa-5x"></i>
+                </button>
                 
                 </div>
                 <div className="content-kenmerken">

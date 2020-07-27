@@ -9,6 +9,7 @@ import keuken from "../img/vierpersoonsKeuken.jpg"
 import woonkamer from "../img/vierpersoonsWoonkamer.jpg"
 import { render } from 'react-dom'
 
+import 'font-awesome/css/font-awesome.min.css';
 function ContentBlockTwo(){
     
         const sliderArr = [<ImgComp src={buitenkant}/>, <ImgComp src={slaapkamer}/>, <ImgComp src={slaapkamer02}/>, <ImgComp src={slaapkamer03}/>, <ImgComp src={keuken}/>,<ImgComp src={woonkamer}/>];
@@ -33,8 +34,12 @@ function ContentBlockTwo(){
                     }
                     )
                 }
-                <button id="goLeft" onClick={goLeft}>links</button>
-                <button id="goRight" onClick={goRight}>rechts</button>
+                <button id="goLeft" onClick={goLeft}>
+                <i className="fa fa-chevron-left fa-5x"></i>
+                </button>
+                <button id="goRight" onClick={goRight}>
+                <i className="fa fa-chevron-right fa-5x"></i>
+                </button>
                 
                 </div>
                 <div className="content-kenmerken">

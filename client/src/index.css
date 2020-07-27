@@ -118,8 +118,7 @@ Content Tweepersoons
   transform: translateY(-50%);
   width: 10%;
   height: 60vh;
-  background: #333;
-  color: aliceblue;
+  color: white
 }
 
 #goRight{
@@ -129,8 +128,7 @@ Content Tweepersoons
   transform: translateY(-50%);
   width: 10%;
   height: 60vh;
-  background: #333;
-  color: aliceblue;
+  color: white
 }
 
 .content-tweepersoons{
@@ -213,6 +211,7 @@ Content Vierpersoons
 .slick-slide.slick-center img {
   transform: scale(1.1);
 }
+
 .content-vierpersoons{
   grid-template-columns: 60% 40%;
   text-align: center;
