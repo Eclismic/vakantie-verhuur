@@ -88,40 +88,27 @@ Content Tweepersoons
 *
 */
 
-
-/*.content-container-tweepersoons{
-  position: relative;
-  padding-left: 10px;
-  display: flex;
-  flex-direction: column;
-  border: 2px solid rgb(58, 2, 2);
-  height: 100vh;
-  width: 100vw;
-  box-sizing: border-box;
-  align-items: center;
-}
-*/
-
 .slider{
   border: 1px solid red;
-  width: 100vw;
-  height: 40vh;
+  width: 60vw;
+  height: 60vh;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
-  padding-left: 10px;
   position: relative;
   background: transparent;
+  overflow: hidden;
 }
 
 
 .slide{
   min-width:100%;
   border: 1px solid blue;
-  height: 40vh;
+  height: 60vh;
   transition: .5s;
+  overflow: hidden;
 }
 
 #goLeft{
@@ -130,7 +117,7 @@ Content Tweepersoons
   left:0;
   transform: translateY(-50%);
   width: 10%;
-  height: 40vh;
+  height: 60vh;
   background: #333;
   color: aliceblue;
 }
@@ -141,7 +128,7 @@ Content Tweepersoons
   right: 0;
   transform: translateY(-50%);
   width: 10%;
-  height: 40vh;
+  height: 60vh;
   background: #333;
   color: aliceblue;
 }
@@ -182,8 +169,6 @@ Content Tweepersoons
 }
 
 .nav-link-tweepersoons{
-  position: absolute;
-  bottom:0;
   border: 2px solid black;
   padding: 3px;
   margin: 2px;
@@ -212,16 +197,6 @@ Content Vierpersoons
 *
 *
 */
-
-
-.content-container-vierpersoons{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  margin: 0 auto;
-}
 
 .slides{
   padding: 20px;

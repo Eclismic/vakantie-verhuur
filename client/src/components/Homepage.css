@@ -95,8 +95,8 @@
  }
 
   @keyframes bounce {
-   from { bottom: 300px;}
-   to{bottom:330px;}
+   from { bottom: 220px;}
+   to{bottom:280px;}
    }
 
    .homepage-section-two{
@@ -110,20 +110,17 @@
    }
 
    .section-two-column-one{
-      border: 2px dotted red;
-      background:  rgb(214, 232, 238);
+      background:  white;
       padding-left: 	20px;
    }
    
    .section-two-column-two{
-      border: 2px dotted blue;
-      background:  rgb(214, 232, 238);
+      background:  white;
       bottom: 0px;
    }
 
    .section-two-column-three{
-      border: 2px dotted yellow;
-      background:  rgb(214, 232, 238);
+      background:  white;
       grid-column-start: 1;
       grid-column-end:   3;
       text-align: center;

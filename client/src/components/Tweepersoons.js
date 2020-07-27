@@ -1,11 +1,18 @@
 import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
+import ImgComp from "./ImgComp"
+import woestijn from '../img/woestijn.jpeg'
+import buitenkant from "../img/tweepersoonsBuitenkant.jpg"
+import slaapkamer from "../img/tweepersoonsSlaapkamer.jpg"
+import slaapkamer02 from "../img/tweepersoonsSlaapkamer02.jpg"
+import keuken from "../img/tweepersoonsKeuken.jpg"
+import woonkamer from "../img/tweepersoonsWoonkamer.jpg"
 
 
 
 
  function ContentBlockOne() {
-    const sliderArr = [1,2,3,4,5]
+    const sliderArr = [<ImgComp src={buitenkant}/>, <ImgComp src={slaapkamer}/>, <ImgComp src={slaapkamer02}/>, <ImgComp src={keuken}/>,<ImgComp src={woonkamer}/>];
     const [x,setX] = useState(0);
 
     const goLeft = () => {
@@ -117,9 +124,6 @@ import {NavLink} from 'react-router-dom'
                 <NavLink to="/Boeking" className="nav-link-tweepersoons" >
                     Boek hier uw verblijf
                 </NavLink>
-            </div>
-            <div className="content-one-images">
-                    
             </div>
         </div>
         </div>

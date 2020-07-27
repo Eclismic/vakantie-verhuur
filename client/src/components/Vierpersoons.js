@@ -1,54 +1,42 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
-import newYork from '../img/newYork.jpg'
-import zee from '../img/zee.jpeg'
-import rainSea from '../img/rainSea.jpg'
-import woestijn from '../img/woestijn.jpeg'
-import Slider from "react-slick";
+import ImgComp from "./ImgComp"
+import buitenkant from "../img/vierpersoonsBuitenkant.jpg"
+import slaapkamer from "../img/vierpersoonsSlaapkamer.jpg"
+import slaapkamer02 from "../img/vierpersoonsSlaapkamer02.jpg"
+import slaapkamer03 from "../img/vierpersoonsSlaapkamer03.jpg"
+import keuken from "../img/vierpersoonsKeuken.jpg"
+import woonkamer from "../img/vierpersoonsWoonkamer.jpg"
 import { render } from 'react-dom'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
-class ContentBlockTwo extends React.Component {
-    render(){
-        var settings = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: true,
-            className:"slides",
-            centerMode: true,
-            centerPadding: 0,
-            variableWidth: true,
-            swipe: true
-          };
+function ContentBlockTwo(){
+    
+        const sliderArr = [<ImgComp src={buitenkant}/>, <ImgComp src={slaapkamer}/>, <ImgComp src={slaapkamer02}/>, <ImgComp src={slaapkamer03}/>, <ImgComp src={keuken}/>,<ImgComp src={woonkamer}/>];
+        const [x,setX] = useState(0);
+    
+        const goLeft = () => {
+            x === 0 ? setX(-100 * (sliderArr.length -1)) : setX(x + 100);
+        };
+    
+        const goRight = () => {
+            x === -100 * (sliderArr.length -1) ? setX(0) : setX(x - 100);
+        };
     
     return (
         <div className= "parent-vierpersoons">
             <div className="content-container-vierpersoons">
-            <Slider {...settings}>
-                <div className="slider-container">  
-                    <img height="500px" src= {newYork}/>
-                    </div>
-                    <div>
-                    <img height="500px" src= {zee}/>
-                    </div>
-                    <div>
-                    <img height="500px" src= {rainSea}/>
-                    </div>
-                    <div>
-                    <img height="500px" src= {woestijn}/>
-                    </div>
-                    <div>
-                    <img  height="500px" src= {newYork}/>
-                    </div>
-                    <div>
-                    <img height="500px" src= {newYork}/>
+            <div className="slider">{
+                    sliderArr.map((item,index) => {
+                       return <div key = {index} className="slide" style={{transform: `translateX(${x}%)`}}>
+                            {item}
+                        </div>    
+                    }
+                    )
+                }
+                <button id="goLeft" onClick={goLeft}>links</button>
+                <button id="goRight" onClick={goRight}>rechts</button>
+                
                 </div>
-               
-            </Slider>
                 <div className="content-kenmerken">
                     <div className="kenmerken-titel">
                         <h3>Kenmerken & faciliteiten</h3>
@@ -133,10 +121,8 @@ class ContentBlockTwo extends React.Component {
             </div>
         </div>
         </div>
-
-        
     )
     }
-}
+
 
 export default ContentBlockTwo
