@@ -106,17 +106,19 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: 2;
-      
    }
 
    .section-two-column-one{
       background:  white;
       padding-left: 	20px;
+      text-align: center;
    }
    
    .section-two-column-two{
       background:  white;
       bottom: 0px;
+      align-items: center;
+      text-align: center;
    }
 
    .section-two-column-three{

@@ -1,6 +1,7 @@
 import React from 'react'
 import './Homepage.css'
 import Footer from './Footer.js'
+import DatePicker from "react-datepicker";
 
  const Homepage = () => {
     return (
@@ -90,10 +91,18 @@ import Footer from './Footer.js'
         </div>  
 		<div className="homepage-section-two" id="section-two">
 			<div className="section-two-column-one">	
-				<h4>Section one</h4>
+				<h4>Kalendar tweepersoons</h4>
+                <DatePicker
+                disabled
+                inline
+                />
 			</div>
 			<div className="section-two-column-two">
-				<h4>Section two</h4>
+				<h4>kalendar vierpersoons</h4>
+                <DatePicker
+                disabled
+                inline
+                />
 			</div>
 			<div className="section-two-column-three">
 			<div className="beschrijving-details">
