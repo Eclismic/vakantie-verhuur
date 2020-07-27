@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import ImgComp from "./ImgComp"
-import woestijn from '../img/woestijn.jpeg'
 import buitenkant from "../img/tweepersoonsBuitenkant.jpg"
 import slaapkamer from "../img/tweepersoonsSlaapkamer.jpg"
 import slaapkamer02 from "../img/tweepersoonsSlaapkamer02.jpg"
