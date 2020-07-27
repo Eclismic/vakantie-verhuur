@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "google-maps-react": "^2.0.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.27.0",
     "mongoose": "^5.9.21",
     "prop-types": "^15.7.2",
