@@ -13,13 +13,7 @@ import { set } from 'lodash';
 
         this.isBezetTweepersoons = this.isBezetTweepersoons.bind(this);
         this.isBezetVierpersoons = this.isBezetVierpersoons.bind(this);
-        this.showCardTweepersoons = this.showCardTweepersoons.bind(this);
         this.fetchBoekingen = this.fetchBoekingen.bind(this);
-
-        this.state = {
-            showTweepersoons: "none"
-        }
-        
         
     }
 
@@ -155,17 +149,19 @@ import { set } from 'lodash';
                 <div className="homepage-section-two" id="section-two">
                     <div className="section-two-column-one">	
                         <h4>Kalendar tweepersoons</h4>
-                        <button onClick={this.showCardTweepersoons}> Boekingen tweepersoons</button>
-                        <div style={{display: this.state.showTweepersoons}}>
+                        <div className = "section-two-column-one-datepicker">
                             <DatePicker
-                            inline
                             filterDate={this.isBezetTweepersoons}
+                            placeholderText="Kalendar tweepersoons-klik"
+                            inline
                             />
                         </div>
                     </div>
                     <div className="section-two-column-two">
                         <h4>kalendar vierpersoons</h4>
                         <DatePicker
+                        filterDate={this.isBezetVierpersoons}
+                        placeholderText="Select a date after 5 days ago"
                         inline
                         />
                     </div>

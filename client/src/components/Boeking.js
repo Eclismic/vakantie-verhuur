@@ -35,7 +35,9 @@ class Boeking extends Component {
             period: [],
             bestaandeBoekingen: [],
             boekingenTweepersoons: [],
-            boekingenVierpersoons: []
+            boekingenVierpersoons: [],
+            showLabel: false,
+            prijs: 0
         }
 
     }
@@ -108,6 +110,24 @@ class Boeking extends Component {
                 enddateDay: date.getDate()
             })
         }
+        console.log(this.state.fulldateEnd)
+        if(this.state.fulldateStart !== this.state.fulldateEnd){
+            this.calculatePrice()
+        }
+    }
+
+    calculatePrice(){
+        const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+        const firstDate = this.state.fulldateStart
+        console.log(firstDate)
+        const secondDate = this.state.fulldateEnd
+
+        const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+        console.log(diffDays)
+        const berekendePrijs = diffDays * 65
+
+        this.setState({prijs: berekendePrijs})
+        this.setState({showLabel:true})
     }
 
     async processBooking(e) {
@@ -270,6 +290,7 @@ class Boeking extends Component {
                             />
                         </div>
                     </div>
+                    <label style={this.state.showLabel ? {} : {display:'none'}}>prijs van uw vakantie is: {this.state.prijs}</label>
                     <div className="form-group">
                         <input type="submit" value="Bevestig" className="btn btn-primary" />
                     </div>
