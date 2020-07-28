@@ -3,6 +3,7 @@ import './Homepage.css'
 import Footer from './Footer.js'
 import DatePicker from "react-datepicker";
 import axios from 'axios';
+import { set } from 'lodash';
 
 
 
@@ -10,47 +11,61 @@ import axios from 'axios';
     constructor(props) {
         super(props);
 
-        //this.isBezetTweepersoons = this.isBezetTweepersoons.bind(this);
-        //this.isBezetVierpersoons = this.isBezetVierpersoons.bind(this);
+        this.isBezetTweepersoons = this.isBezetTweepersoons.bind(this);
+        this.isBezetVierpersoons = this.isBezetVierpersoons.bind(this);
+        this.showCardTweepersoons = this.showCardTweepersoons.bind(this);
+        this.fetchBoekingen = this.fetchBoekingen.bind(this);
 
         this.state = {
-            boekingenTweepersoons: [],
-            boekingenVierpersoons: []
+            showTweepersoons: "none"
         }
-
+        
+        
     }
-/*
-    componentDidMount() {
+
+    componentDidMount(){
         this.fetchBoekingen();
     }
 
+    bookingsArrTweepersoons = []
+    bookingsArrVierpersoons = []   
+
+
+    showCardTweepersoons(){
+        this.setState({showTweepersoons:""})
+    }
+   
     //ophalen boekingen
     async fetchBoekingen() {
+
         console.log("logging")
+
+
          await axios.get('/bookings/')
             .then(res => res.data.map((dataRow) => {
                 if (dataRow.appartement === 'Tweepersoons') {
-                    this.setState({ boekingenTweepersoons: [...this.state.boekingenTweepersoons, dataRow.allVacationDays] })
+                    this.bookingsArrTweepersoons = [...this.bookingsArrTweepersoons, dataRow.allVacationDays] 
                 } else if (dataRow.appartement === 'Vierpersoons') {
-                    this.setState({ boekingenVierpersoons: [...this.state.boekingenVierpersoons, dataRow.allVacationDays] })
+                    this.bookingsArrVierpersoons = [...this.bookingsArrVierpersoons, dataRow.allVacationDays] 
                 }
             }))
 
-        this.setState({ boekingenTweepersoons: this.state.boekingenTweepersoons.concat.apply([], this.state.boekingenTweepersoons) })
-        this.setState({ boekingenVierpersoons: this.state.boekingenVierpersoons.concat.apply([], this.state.boekingenVierpersoons) })
+        this.bookingsArrTweepersoons = this.bookingsArrTweepersoons.concat.apply([], this.bookingsArrTweepersoons) 
+        this.bookingsArrVierpersoons = this.bookingsArrVierpersoons.concat.apply([], this.bookingsArrVierpersoons)
             console.log("klaar met logging")
     }
 
     isBezetTweepersoons(dateparam){
+        console.log(this.bookingsArrTweepersoons.length)
         let teFilterenDag = dateparam.toISOString().substring(0, 10);
-        return !this.state.boekingenTweepersoons.includes(teFilterenDag);
+        return !this.bookingsArrTweepersoons.includes(teFilterenDag);
     };
 
     isBezetVierpersoons(dateparam){
         let teFilterenDag = dateparam.toISOString().substring(0, 10);
-        return !this.state.boekingenVierpersoons.includes(teFilterenDag);
+        return !this.bookingsArrVierpersoons.includes(teFilterenDag);
     };
-*/
+
     render(){
         return (
             <div className = "homepage-container">
@@ -140,9 +155,13 @@ import axios from 'axios';
                 <div className="homepage-section-two" id="section-two">
                     <div className="section-two-column-one">	
                         <h4>Kalendar tweepersoons</h4>
-                        <DatePicker
-                        inline
-                        />
+                        <button onClick={this.showCardTweepersoons}> Boekingen tweepersoons</button>
+                        <div style={{display: this.state.showTweepersoons}}>
+                            <DatePicker
+                            inline
+                            filterDate={this.isBezetTweepersoons}
+                            />
+                        </div>
                     </div>
                     <div className="section-two-column-two">
                         <h4>kalendar vierpersoons</h4>
