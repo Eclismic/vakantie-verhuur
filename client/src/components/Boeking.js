@@ -108,11 +108,11 @@ class Boeking extends Component {
                 fulldateEnd: date,
                 enddateMonth: date.getMonth(),
                 enddateDay: date.getDate()
+            }, () =>{
+                if(this.state.fulldateStart !== this.state.fulldateEnd){
+                    this.calculatePrice()
+                }
             })
-        }
-        console.log(this.state.fulldateEnd)
-        if(this.state.fulldateStart !== this.state.fulldateEnd){
-            this.calculatePrice()
         }
     }
 

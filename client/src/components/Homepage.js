@@ -149,11 +149,12 @@ import { set } from 'lodash';
                 <div className="homepage-section-two" id="section-two">
                     <div className="section-two-column-one">	
                         <h4>Kalendar tweepersoons</h4>
-                        <div className = "section-two-column-one-datepicker">
+                        <div className = "react-datepicker">
                             <DatePicker
                             filterDate={this.isBezetTweepersoons}
                             placeholderText="Kalendar tweepersoons-klik"
                             inline
+                            calendarClassName="kalendar-homepage"
                             />
                         </div>
                     </div>
@@ -163,6 +164,7 @@ import { set } from 'lodash';
                         filterDate={this.isBezetVierpersoons}
                         placeholderText="Select a date after 5 days ago"
                         inline
+                        calendarClassName="kalendar-homepage"
                         />
                     </div>
                     <div className="section-two-column-three">

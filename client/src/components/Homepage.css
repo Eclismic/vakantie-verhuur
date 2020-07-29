@@ -127,8 +127,22 @@
       grid-column-end:   3;
       text-align: center;
    }
-  
-   .section-two-column-one-datepicker{
-      max-width: 10px;
+
+   .kalendar-homepage__month-container{
+      width: 400px;
+      height: 350px;
    }
   
+   .kalendar-homepage__month{
+      width: 350px;
+      height: 350px;
+   }
+
+   .kalendar-homepage__week{
+      width: 100%;
+   }
+
+   .kalendar-homepage__day {
+      height: 50px;
+      width: 50px !important;
+   }
