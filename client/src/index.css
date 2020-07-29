@@ -23,6 +23,9 @@ code {
   padding:  0;
 }
 
+::-webkit-scrollbar{
+  display: none;
+}
 
 a{
   color: #333; 
@@ -131,14 +134,11 @@ Content Tweepersoons
   color: white
 }
 
-.content-tweepersoons{
-  
-}
-
 .content-kenmerken{
   overflow-y: scroll;
   margin-bottom: 5px;
   max-height: 60vh;
+  text-align: center;
 }
 
 .content-kenmerken::-webkit-scrollbar{
@@ -149,16 +149,6 @@ Content Tweepersoons
 .kenmerken-details{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  
-}
-
-.kenmerken-details .key p{
-  text-align: left;
-  padding-right: 50px;
-}
-
-.kenmerken-details .value p{
-  text-align: left;
 }
 
 .knop-boeken{
@@ -196,21 +186,7 @@ Content Vierpersoons
 *
 */
 
-.slides{
-  padding: 20px;
-  margin: 50px;
-  background-color: grey;
-  align-items: center;
-}
 
-.slider-container{
-  align-items: center;
-  background-color: hotpink;
-}
-
-.slick-slide.slick-center img {
-  transform: scale(1.1);
-}
 
 .content-vierpersoons{
   grid-template-columns: 60% 40%;
@@ -232,15 +208,8 @@ Content Vierpersoons
 .kenmerken-details{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  
-}
-
-.kenmerken-details .key p{
-  text-align: left;
-  padding-right: 50px;
-}
-
-.kenmerken-details .value p{
+  left: 50%;
+  right: 50%;
   text-align: left;
 }
 
@@ -268,44 +237,10 @@ Content Vierpersoons
   color:teal;
 }
 
-.content-two-images {
-  display:flex;
-  width: 100vw;
-  max-height: 400px;
-  min-height: 200px;
-  margin-top:auto;
-  box-sizing: border-box;
-}
-
-
-
 .content-two-images::-webkit-scrollbar{
   display: none;
 }
 
-#newYork{
-  max-height: 300px;;
-  height: 400px;
-  max-width: 400px;
-}
-
-#zee{
-  max-height: 300px;;
-  height: 400px;
-  width: 400px;
-}
-
-#rainSea{
-  max-height: 300px;;
-  height: 400px;
-  width: 400px;
-}
-
-#woestijn{
-  max-height: 300px;;
-  height: 400px;
-  width: 400px;
-}
 
 
 /*

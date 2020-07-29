@@ -50,7 +50,6 @@ import { set } from 'lodash';
     }
 
     isBezetTweepersoons(dateparam){
-        console.log(this.bookingsArrTweepersoons.length)
         let teFilterenDag = dateparam.toISOString().substring(0, 10);
         return !this.bookingsArrTweepersoons.includes(teFilterenDag);
     };
@@ -149,7 +148,7 @@ import { set } from 'lodash';
                 <div className="homepage-section-two" id="section-two">
                     <div className="section-two-column-one">	
                         <h4>Kalendar tweepersoons</h4>
-                        <div className = "react-datepicker">
+                        <div className = "react-datepicker-homepage">
                             <DatePicker
                             filterDate={this.isBezetTweepersoons}
                             placeholderText="Kalendar tweepersoons-klik"
@@ -160,12 +159,14 @@ import { set } from 'lodash';
                     </div>
                     <div className="section-two-column-two">
                         <h4>kalendar vierpersoons</h4>
-                        <DatePicker
-                        filterDate={this.isBezetVierpersoons}
-                        placeholderText="Select a date after 5 days ago"
-                        inline
-                        calendarClassName="kalendar-homepage"
-                        />
+                        <div className = "react-datepicker-homepage">
+                            <DatePicker
+                            filterDate={this.isBezetVierpersoons}
+                            placeholderText="Select a date after 5 days ago"
+                            inline
+                            calendarClassName="kalendar-homepage"
+                            />
+                        </div>    
                     </div>
                     <div className="section-two-column-three">
                     <div className="beschrijving-details">

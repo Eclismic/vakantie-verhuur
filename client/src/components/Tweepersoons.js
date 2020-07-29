@@ -32,7 +32,7 @@ import woonkamer from "../img/tweepersoonsWoonkamer.jpg"
                        return <div key = {index} className="slide" style={{transform: `translateX(${x}%)`}}>
                             {item}
                         </div>    
-                    }
+                        }
                     )
                 }
                 <button id="goLeft" onClick={goLeft}>

@@ -142,7 +142,26 @@
       width: 100%;
    }
 
-   .kalendar-homepage__day {
+   .react-datepicker-homepage .react-datepicker__day {
       height: 50px;
       width: 50px !important;
+      text-transform: none !important;
+      cursor: default !important;
    }
+
+   .react-datepicker-homepage .react-datepicker__day:hover,
+   .react-datepicker-homepage .react-datepicker__day:active,
+   .react-datepicker-homepage .react-datepicker__day:focus
+   {
+      background-color: green !important;
+   }
+
+   .react-datepicker-homepage .react-datepicker__day--disabled:hover,
+   .react-datepicker-homepage .react-datepicker__day--disabled:active,
+   .react-datepicker-homepage .react-datepicker__day--disabled:focus
+   {
+      background-color: red !important;
+   }
+ 
+   
+
