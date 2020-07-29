@@ -31,10 +31,6 @@ import { set } from 'lodash';
    
     //ophalen boekingen
     async fetchBoekingen() {
-
-        console.log("logging")
-
-
          await axios.get('/bookings/')
             .then(res => res.data.map((dataRow) => {
                 if (dataRow.appartement === 'Tweepersoons') {
@@ -46,7 +42,6 @@ import { set } from 'lodash';
 
         this.bookingsArrTweepersoons = this.bookingsArrTweepersoons.concat.apply([], this.bookingsArrTweepersoons) 
         this.bookingsArrVierpersoons = this.bookingsArrVierpersoons.concat.apply([], this.bookingsArrVierpersoons)
-            console.log("klaar met logging")
     }
 
     isBezetTweepersoons(dateparam){

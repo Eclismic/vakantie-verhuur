@@ -39,11 +39,6 @@ a{
   flex-direction: column;
   align-items: center;
   width: 100%;
-  overflow: scroll;
-}
-
-.page-container::-webkit-scrollbar{
-  display: none;
 }
 
 /*
@@ -121,7 +116,7 @@ Content Tweepersoons
   transform: translateY(-50%);
   width: 10%;
   height: 60vh;
-  color: white
+  color: white;
 }
 
 #goRight{
@@ -131,20 +126,14 @@ Content Tweepersoons
   transform: translateY(-50%);
   width: 10%;
   height: 60vh;
-  color: white
+  color: white;
 }
 
 .content-kenmerken{
-  overflow-y: scroll;
   margin-bottom: 5px;
   max-height: 60vh;
   text-align: center;
 }
-
-.content-kenmerken::-webkit-scrollbar{
-  display: none;
-}
-
 
 .kenmerken-details{
   display: grid;
@@ -152,8 +141,11 @@ Content Tweepersoons
 }
 
 .knop-boeken{
-  margin: 10px;
   text-align: center;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  padding-right: 10vw;
 }
 
 .nav-link-tweepersoons{
@@ -175,9 +167,6 @@ Content Tweepersoons
 }
 
 
-
-
-
 /*
 *
 *
@@ -185,25 +174,16 @@ Content Vierpersoons
 *
 *
 */
-
-
-
 .content-vierpersoons{
   grid-template-columns: 60% 40%;
   text-align: center;
 }
 
 .content-kenmerken{
-  overflow-y: scroll;
   margin-bottom: 5px;
   max-height: 60vh;
   margin-left: 10px;
 }
-
-.content-kenmerken::-webkit-scrollbar{
-  display: none;
-}
-
 
 .kenmerken-details{
   display: grid;
@@ -241,8 +221,6 @@ Content Vierpersoons
   display: none;
 }
 
-
-
 /*
 *
 *
@@ -261,9 +239,12 @@ Content Vierpersoons
   display: none;
 }
 
-
-
-
+/*
+*
+*
+* Boeking
+*
+*/
 .boeking{
   align-items: left;
 }
@@ -341,16 +322,13 @@ input[type=text], select, textarea {
   .react-datepicker__day--disabled{
     background-color: red;
   }
-  
- 
 
-
-
-
-
-
-
-
+/*
+*
+*
+* Footer
+*
+*/
 .main-footer{
   bottom: 0;
   position: fixed;
