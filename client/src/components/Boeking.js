@@ -18,6 +18,7 @@ class Boeking extends Component {
         this.isBezet = this.isBezet.bind(this);
         this.onChangeAppartement = this.onChangeAppartement.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
+        this.validateBegindate = this.validateBegindate.bind(this);
 
         this.state = {
             voornaam: '...',
@@ -135,10 +136,14 @@ class Boeking extends Component {
 
         await this.getAllBookDates()
 
-        
-            await this.checkForConflict()
-            .then(() => this.addBooking())
-            .catch(err => console.log(err))
+        await this.validateBegindate() //begint de vakantie op maandag/vrijdag
+        .catch(err => alert(err))
+        await this.validateEnddate() //  en eindigt deze op maandag/vrijdag
+        .catch(err => alert(err))
+
+        await this.checkForConflict()
+        .then(() => this.addBooking())
+        .catch(err => console.log(err))
     };
 
     async getAllBookDates() {
@@ -166,6 +171,20 @@ class Boeking extends Component {
                 geboekteDagen: allVacationDays
             }, () => console.log(this.state.geboekteDagen)))
 
+        })
+    }
+
+    async validateBegindate(){
+        return new Promise((resolve, reject) => {
+            console.log(this.state.fulldateStart.getDay === 1 || 5);
+            (this.state.fulldateStart.getDay === 1 || this.state.fulldateStart.getDay ===  5) ? resolve('aankomst is op een maandag/vrijdag') : reject ('aankomst is niet op maandag/vrijdag');
+        })
+    }
+
+    async validateEnddate(){
+        return new Promise((resolve, reject) => {
+            console.log(this.state.fulldateEnd.getDay === 1 || 5);
+            (this.state.fulldateEnd.getDay === 1 || this.state.fulldateEnd.getDay === 5) ? resolve('vertrek is op een maandag/vrijdag') : reject ('vertrek is niet op maandag/vrijdag');
         })
     }
 
