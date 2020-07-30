@@ -146,9 +146,14 @@ import { set } from 'lodash';
                         <div className = "react-datepicker-homepage">
                             <DatePicker
                             filterDate={this.isBezetTweepersoons}
-                            placeholderText="Kalendar tweepersoons-klik"
-                            inline
+                            placeholderText="Wat is er vrij? Klik hier voor tweepersoons huisje"
                             calendarClassName="kalendar-homepage"
+                            popperPlacement="right"
+                            popperModifiers={{
+                                offset: {
+                                  enabled: true,
+                                  offset: "150px, 10px"
+                                }}}
                             />
                         </div>
                     </div>
@@ -157,9 +162,15 @@ import { set } from 'lodash';
                         <div className = "react-datepicker-homepage">
                             <DatePicker
                             filterDate={this.isBezetVierpersoons}
-                            placeholderText="Select a date after 5 days ago"
-                            inline
+                            placeholderText="Wat is er vrij? Klik hier voor vierpersoons huisje"
                             calendarClassName="kalendar-homepage"
+                            popperPlacement="left"
+                            popperModifiers={{
+                                offset: {
+                                  enabled: true,
+                                  offset: "150px, 10px"
+                                }}}
+                            
                             />
                         </div>    
                     </div>

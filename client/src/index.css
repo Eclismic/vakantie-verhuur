@@ -87,11 +87,10 @@ Content Tweepersoons
 */
 
 .slider{
-  border: 1px solid red;
+  margin-top: 10px;
   width: 60vw;
   height: 60vh;
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
@@ -103,7 +102,6 @@ Content Tweepersoons
 
 .slide{
   min-width:100%;
-  border: 1px solid blue;
   height: 60vh;
   transition: .5s;
   overflow: hidden;
@@ -133,59 +131,13 @@ Content Tweepersoons
   margin-bottom: 5px;
   max-height: 60vh;
   text-align: center;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  margin-bottom: 200px;
 }
 
 .kenmerken-details{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.knop-boeken{
-  text-align: center;
-  position: fixed;
-  top: 50%;
-  right: 0;
-  padding-right: 10vw;
-}
-
-.nav-link-tweepersoons{
-  border: 2px solid black;
-  padding: 3px;
-  margin: 2px;
-  background-color: bisque;
-  transition: all 0.3s ease 0s;
-}
-
-.nav-link-tweepersoons:hover{
-  background-color: rgb(253, 214, 166);
-  font-style: bold;
-  transform: scale(1.02);
-}
-
-.nav-link-tweepersoons:active{
-  color:teal;
-}
-
-
-/*
-*
-*
-Content Vierpersoons
-*
-*
-*/
-.content-vierpersoons{
-  grid-template-columns: 60% 40%;
-  text-align: center;
-}
-
-.content-kenmerken{
-  margin-bottom: 5px;
-  max-height: 60vh;
-  margin-left: 10px;
-}
-
-.kenmerken-details{
+  margin-top: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   left: 50%;
@@ -194,31 +146,29 @@ Content Vierpersoons
 }
 
 .knop-boeken{
-  margin: 10px;
   text-align: center;
+  position: fixed;
+  top: 90%;
+  right: 0;
+  padding-right: 10vw;
 }
 
-.nav-link-vierpersoons{
+.nav-link{
   border: 2px solid black;
   padding: 3px;
   margin: 2px;
   background-color: bisque;
   transition: all 0.3s ease 0s;
-  padding: 5px;
 }
 
-.nav-link-vierpersoons:hover{
+.nav-link:hover{
   background-color: rgb(253, 214, 166);
   font-style: bold;
   transform: scale(1.02);
 }
 
-.nav-link-vierpersoons:active{
+.nav-link:active{
   color:teal;
-}
-
-.content-two-images::-webkit-scrollbar{
-  display: none;
 }
 
 /*

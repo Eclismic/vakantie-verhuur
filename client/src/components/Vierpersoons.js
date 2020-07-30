@@ -68,6 +68,7 @@ function ContentBlockTwo(){
                             <br></br>
                             <br></br>
                             <br></br>
+                            <br></br>
                             <p><span style={{fontWeight: 'bold'}}>Sanitair </span></p>
                             <br></br>
                             <br></br>
@@ -120,7 +121,7 @@ function ContentBlockTwo(){
                 </div>
             
             <div className="knop-boeken">
-                <NavLink to="/Boeking" className="nav-link-vierpersoons" >
+                <NavLink to="/Boeking" className="nav-link" >
                     Boek hier uw verblijf
                 </NavLink>
             </div>

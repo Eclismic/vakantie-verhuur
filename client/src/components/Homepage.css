@@ -112,6 +112,7 @@
       background:  white;
       padding-left: 	20px;
       text-align: center;
+      padding-top: 50px;
    }
    
    .section-two-column-two{
@@ -119,6 +120,7 @@
       bottom: 0px;
       align-items: center;
       text-align: center;
+      padding-top: 50px;
    }
 
    .section-two-column-three{
@@ -127,6 +129,17 @@
       grid-column-end:   3;
       text-align: center;
    }
+
+   .react-datepicker-homepage .react-datepicker__input-container{
+      width: 320px;
+      animation: float 2s ease-out infinite
+   }
+
+   @keyframes float {
+      50% {
+         transform: scale(1.2, 1.2);
+      }
+    }
 
    .kalendar-homepage__month-container{
       width: 400px;
@@ -163,5 +176,3 @@
       background-color: red !important;
    }
  
-   
-

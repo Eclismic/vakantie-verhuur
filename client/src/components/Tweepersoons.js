@@ -124,7 +124,7 @@ import woonkamer from "../img/tweepersoonsWoonkamer.jpg"
                 </div>
             </div>
             <div className="knop-boeken">
-                <NavLink to="/Boeking" className="nav-link-tweepersoons" >
+                <NavLink to="/Boeking" className="nav-link" >
                     Boek hier uw verblijf
                 </NavLink>
             </div>
