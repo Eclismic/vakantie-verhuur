@@ -42,6 +42,7 @@ class Boeking extends Component {
             boekingenVierpersoons: [],
             showLabel: false,
             prijs: 0,
+            error: '',
             showPopup: false
         }
 
@@ -143,7 +144,7 @@ class Boeking extends Component {
         .then(() => this.addBooking())
         .catch(err => {
             console.log(err)
-            this.togglePopup()
+            this.setState({error: err}, ()=> this.togglePopup())
            }
         )
     };
@@ -319,7 +320,7 @@ class Boeking extends Component {
                         <input type="submit" value="Bevestig" className="btn btn-primary" />
                     </div>
                 </form>
-                {this.state.showPopup ? <Popup text='Close Me'
+                {this.state.showPopup ? <Popup text='Oeps, daar ging iets fout.' error={this.state.error}
                 closePopup={this.togglePopup.bind(this)} />  : null
         }
             </div>
