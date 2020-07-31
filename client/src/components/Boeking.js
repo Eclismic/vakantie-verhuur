@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Popup from './Popup'
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -19,6 +21,7 @@ class Boeking extends Component {
         this.onChangeAppartement = this.onChangeAppartement.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.validateBegindate = this.validateBegindate.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
 
         this.state = {
             voornaam: '...',
@@ -38,7 +41,8 @@ class Boeking extends Component {
             boekingenTweepersoons: [],
             boekingenVierpersoons: [],
             showLabel: false,
-            prijs: 0
+            prijs: 0,
+            showPopup: false
         }
 
     }
@@ -120,11 +124,9 @@ class Boeking extends Component {
     calculatePrice(){
         const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
         const firstDate = this.state.fulldateStart
-        console.log(firstDate)
         const secondDate = this.state.fulldateEnd
 
         const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-        console.log(diffDays)
         const berekendePrijs = diffDays * 65
 
         this.setState({prijs: berekendePrijs})
@@ -135,15 +137,15 @@ class Boeking extends Component {
         e.preventDefault()
 
         await this.getAllBookDates()
-
-        await this.validateBegindate() //begint de vakantie op maandag/vrijdag
-        .catch(err => alert(err))
-        await this.validateEnddate() //  en eindigt deze op maandag/vrijdag
-        .catch(err => alert(err))
-
-        await this.checkForConflict()
+        .then(() => this.validateBegindate())
+        .then(() => this.validateEnddate)
+        .then(() =>this.checkForConflict())
         .then(() => this.addBooking())
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            this.togglePopup()
+           }
+        )
     };
 
     async getAllBookDates() {
@@ -176,15 +178,13 @@ class Boeking extends Component {
 
     async validateBegindate(){
         return new Promise((resolve, reject) => {
-            console.log(this.state.fulldateStart.getDay === 1 || 5);
-            (this.state.fulldateStart.getDay === 1 || this.state.fulldateStart.getDay ===  5) ? resolve('aankomst is op een maandag/vrijdag') : reject ('aankomst is niet op maandag/vrijdag');
+            (this.state.fulldateStart.getDay() === 1 || this.state.fulldateStart.getDay() ===  5) ? resolve('aankomst is op een maandag/vrijdag') : reject ('aankomst is niet op maandag/vrijdag');
         })
     }
 
     async validateEnddate(){
         return new Promise((resolve, reject) => {
-            console.log(this.state.fulldateEnd.getDay === 1 || 5);
-            (this.state.fulldateEnd.getDay === 1 || this.state.fulldateEnd.getDay === 5) ? resolve('vertrek is op een maandag/vrijdag') : reject ('vertrek is niet op maandag/vrijdag');
+            (this.state.fulldateEnd.getDay() === 1 || this.state.fulldateEnd.getDay() === 5) ? resolve('vertrek is op een maandag/vrijdag') : reject ('vertrek is niet op maandag/vrijdag');
         })
     }
 
@@ -198,8 +198,13 @@ class Boeking extends Component {
                 }
             })
         })
-        
     }
+
+    togglePopup() {
+        this.setState({
+          showPopup: !this.state.showPopup
+        });
+      }
 
     addBooking(){
         const boeking = {
@@ -314,6 +319,9 @@ class Boeking extends Component {
                         <input type="submit" value="Bevestig" className="btn btn-primary" />
                     </div>
                 </form>
+                {this.state.showPopup ? <Popup text='Close Me'
+                closePopup={this.togglePopup.bind(this)} />  : null
+        }
             </div>
         );
     }
