@@ -139,12 +139,12 @@ class Boeking extends Component {
 
         await this.getAllBookDates()
         .then(() => this.validateBegindate())
-        .then(() => this.validateEnddate)
+        .then(() => this.validateEnddate())
         .then(() =>this.checkForConflict())
         .then(() => this.addBooking())
         .catch(err => {
-            console.log(err)
-            this.setState({error: err}, ()=> this.togglePopup())
+            console.log(err);
+            this.setState({error: err}, ()=> this.togglePopup());
            }
         )
     };
@@ -185,6 +185,7 @@ class Boeking extends Component {
 
     async validateEnddate(){
         return new Promise((resolve, reject) => {
+            console.log(this.state.fulldateEnd.getDay() === 1 || this.state.fulldateEnd.getDay() === 5);
             (this.state.fulldateEnd.getDay() === 1 || this.state.fulldateEnd.getDay() === 5) ? resolve('vertrek is op een maandag/vrijdag') : reject ('vertrek is niet op maandag/vrijdag');
         })
     }
