@@ -166,10 +166,13 @@ class Boeking extends Component {
                 return date;
             }
 
-            allVacationDays.push(this.state.fulldateStart.toISOString().substring(0, 10));
+            var startDateForFiltering = new Date();
+            startDateForFiltering.setDate(this.state.fulldateStart.getDate() - 1);
+
+            allVacationDays.push(startDateForFiltering.toISOString().substring(0, 10));
             let counter = 1;
             while (counter <= diffDays) {
-                let vakantieDag = this.state.fulldateStart.addDays(counter).toISOString().substring(0, 10);
+                let vakantieDag = startDateForFiltering.addDays(counter).toISOString().substring(0, 10);
                 allVacationDays.push(vakantieDag);
                 counter = counter + 1;
             }
