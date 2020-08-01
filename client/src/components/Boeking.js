@@ -21,7 +21,9 @@ class Boeking extends Component {
         this.onChangeAppartement = this.onChangeAppartement.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.validateBegindate = this.validateBegindate.bind(this);
-        this.togglePopup = this.togglePopup.bind(this);
+        this.togglePopupError = this.togglePopupError.bind(this);
+        this.togglePopupSucces = this.togglePopupSucces.bind(this);
+
 
         this.state = {
             voornaam: '...',
@@ -43,7 +45,8 @@ class Boeking extends Component {
             showLabel: false,
             prijs: 0,
             error: '',
-            showPopup: false
+            showPopupError: false,
+            showPopupSucces: false
         }
 
     }
@@ -142,9 +145,10 @@ class Boeking extends Component {
         .then(() => this.validateEnddate())
         .then(() =>this.checkForConflict())
         .then(() => this.addBooking())
+        .then(() => this.togglePopupSucces())
         .catch(err => {
             console.log(err);
-            this.setState({error: err}, ()=> this.togglePopup());
+            this.setState({error: err}, ()=> this.togglePopupError());
            }
         )
     };
@@ -185,7 +189,6 @@ class Boeking extends Component {
 
     async validateEnddate(){
         return new Promise((resolve, reject) => {
-            console.log(this.state.fulldateEnd.getDay() === 1 || this.state.fulldateEnd.getDay() === 5);
             (this.state.fulldateEnd.getDay() === 1 || this.state.fulldateEnd.getDay() === 5) ? resolve('vertrek is op een maandag/vrijdag') : reject ('vertrek is niet op maandag/vrijdag');
         })
     }
@@ -202,11 +205,17 @@ class Boeking extends Component {
         })
     }
 
-    togglePopup() {
+    togglePopupError() {
         this.setState({
-          showPopup: !this.state.showPopup
+          showPopupError: !this.state.showPopupError
         });
-      }
+    }
+
+    togglePopupSucces() {
+        this.setState({
+          showPopupSucces: !this.state.showPopupSucces
+        });
+     }
 
     addBooking(){
         const boeking = {
@@ -230,7 +239,9 @@ class Boeking extends Component {
         
     isBezet(dateparam) {
         let teFilterenDag = dateparam.toISOString().substring(0, 10);
+
         if (this.state.appartement === 'Tweepersoons') {
+           // console.log('[RESULTAAT]te filteren dag: ' + teFilterenDag + !this.state.boekingenTweepersoons.includes(teFilterenDag))
             return !this.state.boekingenTweepersoons.includes(teFilterenDag);
         } else {
             return !this.state.boekingenVierpersoons.includes(teFilterenDag);
@@ -297,7 +308,6 @@ class Boeking extends Component {
                                 selected={this.state.fulldateStart}
                                 onChange={date => this.onChangeStartDate(date)}
                                 dateFormat="dd-MM-yyyy"
-                                placeholderText="Op de maandag en vrijdag kennen wij wisseldagen"
                                 filterDate={this.isBezet}
                                 withPortal
                                 strictParsing
@@ -309,7 +319,6 @@ class Boeking extends Component {
                                 selected={this.state.fulldateEnd}
                                 onChange={date => this.onChangeEndDate(date)}
                                 dateFormat="dd-MM-yyyy"
-                                placeholderText="Op de maandag en vrijdag kennen wij wisseldagen"
                                 filterDate={this.isBezet}
                                 withPortal
                                 strictParsing
@@ -321,9 +330,10 @@ class Boeking extends Component {
                         <input type="submit" value="Bevestig" className="btn btn-primary" />
                     </div>
                 </form>
-                {this.state.showPopup ? <Popup text='Oeps, daar ging iets fout.' error={this.state.error}
-                closePopup={this.togglePopup.bind(this)} />  : null
-        }
+                {this.state.showPopupError ? <Popup text='Oeps, daar ging iets fout.' error={this.state.error}
+                closePopup={this.togglePopupError.bind(this)} />  : null }
+                {this.state.showPopupSucces ? <Popup text='Gelukt, uw boeking is doorgekomen' 
+                closePopup={this.togglePopupSucces.bind(this)} />  : null }
             </div>
         );
     }
