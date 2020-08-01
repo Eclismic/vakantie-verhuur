@@ -26,11 +26,12 @@ class Boeking extends Component {
 
 
         this.state = {
-            voornaam: '...',
-            achternaam: '...',
-            plaats: '...',
-            land: '...',
+            voornaam: null,
+            achternaam: null,
+            plaats: null,
+            land: null,
             appartement: 'Tweepersoons',
+            showConfirmationButton: false,
             fulldateStart: new Date(),
             startdateDay: new Date().getDay(),
             startdateMonth: new Date().getMonth(),
@@ -116,11 +117,13 @@ class Boeking extends Component {
             this.setState({
                 fulldateEnd: date,
                 enddateMonth: date.getMonth(),
-                enddateDay: date.getDate()
+                enddateDay: date.getDate(),
+                showConfirmationButton: true
             }, () =>{
                 if(this.state.fulldateStart !== this.state.fulldateEnd){
                     this.calculatePrice()
                 }
+                
             })
         }
     }
@@ -140,7 +143,7 @@ class Boeking extends Component {
     async processBooking(e) {
         e.preventDefault()
 
-        await this.getAllBookDates()
+        this.getAllBookDates()
         .then(() => this.validateBegindate())
         .then(() => this.validateEnddate())
         .then(() =>this.checkForConflict())
@@ -171,7 +174,7 @@ class Boeking extends Component {
 
             allVacationDays.push(startDateForFiltering.toISOString().substring(0, 10));
             let counter = 1;
-            while (counter <= diffDays) {
+            while (counter < diffDays) {
                 let vakantieDag = startDateForFiltering.addDays(counter).toISOString().substring(0, 10);
                 allVacationDays.push(vakantieDag);
                 counter = counter + 1;
@@ -330,7 +333,7 @@ class Boeking extends Component {
                     </div>
                     <label style={this.state.showLabel ? {} : {display:'none'}}>prijs van uw vakantie is: {this.state.prijs}</label>
                     <div className="form-group">
-                        <input type="submit" value="Bevestig" className="btn btn-primary" />
+                        {this.state.showConfirmationButton ? <input type="submit" value="Bevestig" className="btn btn-primary" display='false'/> : null}
                     </div>
                 </form>
                 {this.state.showPopupError ? <Popup text='Oeps, daar ging iets fout.' error={this.state.error}

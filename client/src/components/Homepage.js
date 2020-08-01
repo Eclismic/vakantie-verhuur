@@ -148,7 +148,7 @@ import { set } from 'lodash';
                             filterDate={this.isBezetTweepersoons}
                             placeholderText="Wat is er vrij? Klik hier voor tweepersoons huisje"
                             calendarClassName="kalendar-homepage"
-                            popperPlacement="right"
+                            popperPlacement="top-start"
                             popperModifiers={{
                                 offset: {
                                   enabled: true,
@@ -164,7 +164,7 @@ import { set } from 'lodash';
                             filterDate={this.isBezetVierpersoons}
                             placeholderText="Wat is er vrij? Klik hier voor vierpersoons huisje"
                             calendarClassName="kalendar-homepage"
-                            popperPlacement="left"
+                            popperPlacement="top-start"
                             popperModifiers={{
                                 offset: {
                                   enabled: true,

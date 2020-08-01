@@ -154,6 +154,9 @@
    .kalendar-homepage__week{
       width: 100%;
    }
+    .react-datepicker-homepage .react-datepicker__day-name{
+       width: 50px;
+    }
 
    .react-datepicker-homepage .react-datepicker__day {
       height: 50px;
