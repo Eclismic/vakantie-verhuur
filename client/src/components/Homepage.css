@@ -100,27 +100,26 @@
    }
 
    .homepage-section-two{
-      position: relative;
       height: 100vh;
       width: 100vw;
+      display: flex;
+      justify-content: center;
+   }
+
+   .section-two-wrapper{
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: 2;
+      grid-template-columns: repeat(auto-fit, 400px);
+      justify-content: center;
+   }
+
+   .datepicker-wrapper{
+      
    }
 
    .section-two-column-one{
-      background:  white;
-      padding-left: 	20px;
-      text-align: center;
-      padding-top: 50px;
    }
    
    .section-two-column-two{
-      background:  white;
-      bottom: 0px;
-      align-items: center;
-      text-align: center;
-      padding-top: 50px;
    }
 
    .section-two-column-three{

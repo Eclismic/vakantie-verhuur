@@ -141,38 +141,40 @@ import { set } from 'lodash';
                     </div>
                 </div>  
                 <div className="homepage-section-two" id="section-two">
-                    <div className="section-two-column-one">	
-                        <h4>Kalendar tweepersoons</h4>
-                        <div className = "react-datepicker-homepage">
-                            <DatePicker
-                            filterDate={this.isBezetTweepersoons}
-                            placeholderText="Wat is er vrij? Klik hier voor tweepersoons huisje"
-                            calendarClassName="kalendar-homepage"
-                            popperPlacement="top-start"
-                            popperModifiers={{
-                                offset: {
-                                  enabled: true,
-                                  offset: "150px, 10px"
-                                }}}
-                            />
+                    <div className= "section-two-wrapper">
+                    
+                        <div className="section-two-column-one">	
+                            <h4>Kalendar tweepersoons</h4>
+                            <div className = "react-datepicker-homepage">
+                                <DatePicker
+                                filterDate={this.isBezetTweepersoons}
+                                placeholderText="Wat is er vrij? Klik hier voor tweepersoons huisje"
+                                calendarClassName="kalendar-homepage"
+                                popperPlacement="top-start"
+                                popperModifiers={{
+                                    offset: {
+                                    enabled: true,
+                                    offset: "150px, 10px"
+                                    }}}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="section-two-column-two">
-                        <h4>kalendar vierpersoons</h4>
-                        <div className = "react-datepicker-homepage">
-                            <DatePicker
-                            filterDate={this.isBezetVierpersoons}
-                            placeholderText="Wat is er vrij? Klik hier voor vierpersoons huisje"
-                            calendarClassName="kalendar-homepage"
-                            popperPlacement="top-start"
-                            popperModifiers={{
-                                offset: {
-                                  enabled: true,
-                                  offset: "150px, 10px"
-                                }}}
-                            
-                            />
-                        </div>    
+                        <div className="section-two-column-two">
+                            <h4>kalendar vierpersoons</h4>
+                            <div className = "react-datepicker-homepage">
+                                <DatePicker
+                                filterDate={this.isBezetVierpersoons}
+                                placeholderText="Wat is er vrij? Klik hier voor vierpersoons huisje"
+                                calendarClassName="kalendar-homepage"
+                                popperPlacement="top"
+                                popperModifiers={{
+                                    offset: {
+                                    enabled: true,
+                                    offset: "150px, 10px"
+                                    }}}
+                                />
+                            </div>    
+                    
                     </div>
                     <div className="section-two-column-three">
                     <div className="beschrijving-details">
@@ -202,6 +204,8 @@ import { set } from 'lodash';
                                 <p>Bij het schoon achterlaten van het vakantiehuis worden er geen schoonmaakkosten in rekening gebracht.</p>
                             </div>
                     </div>
+                    </div>
+                
                 </div>
         
                 

@@ -17,7 +17,7 @@ export default function Footer() {
                     <div className="col">
                         <h4>Made by</h4>
                         <ul>
-                            <li>Milco Kats</li>
+                            <li><a target="_blank" href="https://eclismic.github.io/Lethe/" style={{color: "#007a7d"}}>Lethe - webdesign</a></li>
                             <li>Designing</li>
                             <li>HTML, CSS, React, Javascript</li>
                         </ul>
