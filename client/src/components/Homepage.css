@@ -108,15 +108,21 @@
 
    .section-two-wrapper{
       display: grid;
-      grid-template-columns: repeat(auto-fit, 400px);
-      grid-template-rows: 5em 50em;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+      "column-one column-two"
+      "column-three column-three";
+      gap:100px;
       justify-content: center;
    }
 
    .section-two-column-one{
+      grid-area: column-one;
    }
    
    .section-two-column-two{
+      grid-area: column-two;
+      
    }
 
    .section-two-column-three{
@@ -124,6 +130,7 @@
       grid-column-start: 1;
       grid-column-end:   3;
       text-align: center;
+      grid-area: column-three;
    }
 
    .react-datepicker-homepage .react-datepicker__input-container{
@@ -175,3 +182,17 @@
       background-color: red !important;
    }
  
+   @media screen and (max-width: 1400px){
+      .section-two-wrapper{
+          grid-template-columns: 1fr;
+          grid-template-areas: 
+          "column-one"
+          "column-two" 
+          "column-three"
+          ;
+          padding-left: 20px;
+          gap:0;
+      }
+
+  
+  }

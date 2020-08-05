@@ -142,7 +142,6 @@ import { set } from 'lodash';
                 </div>  
                 <div className="homepage-section-two" id="section-two">
                     <div className= "section-two-wrapper">
-                    
                         <div className="section-two-column-one">	
                             <h4>Kalendar tweepersoons</h4>
                             <div className = "react-datepicker-homepage">
