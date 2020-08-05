@@ -109,11 +109,8 @@
    .section-two-wrapper{
       display: grid;
       grid-template-columns: repeat(auto-fit, 400px);
+      grid-template-rows: 5em 50em;
       justify-content: center;
-   }
-
-   .datepicker-wrapper{
-      
    }
 
    .section-two-column-one{
