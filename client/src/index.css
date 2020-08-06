@@ -340,8 +340,14 @@ li{
   grid-template-columns: 1fr;
   text-align: center;
   justify-content: center;
+  align-items: center;
 }
 
+#check-mark{
+  width:100px;
+  height:100px;
+  margin: 0 auto;
+}
 
 .popup-button-wrapper{
   width: 100px;
