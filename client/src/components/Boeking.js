@@ -21,6 +21,7 @@ class Boeking extends Component {
         this.onChangeAppartement = this.onChangeAppartement.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.validateBegindate = this.validateBegindate.bind(this);
+        this.validateVacationLength = this.validateVacationLength.bind(this);
         this.togglePopupError = this.togglePopupError.bind(this);
         this.togglePopupSucces = this.togglePopupSucces.bind(this);
 
@@ -146,6 +147,7 @@ class Boeking extends Component {
         this.getAllBookDates()
         .then(() => this.validateBegindate())
         .then(() => this.validateEnddate())
+        .then(()=> this.validateVacationLength())
         .then(() =>this.checkForConflict())
         .then(() => this.addBooking())
         .then(() => this.togglePopupSucces())
@@ -170,7 +172,8 @@ class Boeking extends Component {
             }
 
             var startDateForFiltering = new Date();
-            startDateForFiltering.setDate(this.state.fulldateStart.getDate() - 1);
+            startDateForFiltering.setDate(this.state.fulldateStart.getDate() -1);
+            startDateForFiltering.setMonth(this.state.fulldateStart.getMonth());
 
             allVacationDays.push(startDateForFiltering.toISOString().substring(0, 10));
             let counter = 1;
@@ -189,13 +192,19 @@ class Boeking extends Component {
 
     async validateBegindate(){
         return new Promise((resolve, reject) => {
-            (this.state.fulldateStart.getDay() === 1 || this.state.fulldateStart.getDay() ===  5) ? resolve('aankomst is op een maandag/vrijdag') : reject ('aankomst is niet op maandag/vrijdag');
+            (this.state.fulldateStart.getDay() === 1 || this.state.fulldateStart.getDay() ===  5) ? resolve('aankomst is op een maandag/vrijdag') : reject('aankomst is niet op maandag/vrijdag');
         })
     }
 
     async validateEnddate(){
         return new Promise((resolve, reject) => {
-            (this.state.fulldateEnd.getDay() === 1 || this.state.fulldateEnd.getDay() === 5) ? resolve('vertrek is op een maandag/vrijdag') : reject ('vertrek is niet op maandag/vrijdag');
+            (this.state.fulldateEnd.getDay() === 1 || this.state.fulldateEnd.getDay() === 5) ? resolve('vertrek is op een maandag/vrijdag') : reject('vertrek is niet op maandag/vrijdag');
+        })
+    }
+
+    async validateVacationLength(){
+        return new Promise((resolve, reject) =>{
+            (this.state.geboekteDagen.length <= 1) ? reject('Minimale vakantieduur is vier dagen (ofwel een weekend)') : resolve('Vakantieperiode is akkoord qua lengte');
         })
     }
 
@@ -284,19 +293,19 @@ class Boeking extends Component {
                 <form onSubmit={this.processBooking}>
                     <div className="form-group">
                         <label>Voornaam</label>
-                        <input type="text" required className="form-control" value={this.state.voornaam} onFocus={(e) => e.target.value === '...' ? e.target.value = '' : e.target.value} onChange={this.onChangeVoornaam} />
+                        <input type="text" required className="form-control" onChange={this.onChangeVoornaam} />
                     </div>
                     <div className="form-group">
                         <label>Achternaam</label>
-                        <input type="text" required className="form-control" value={this.state.achternaam} onFocus={(e) => e.target.value === '...' ? e.target.value = '' : e.target.value} onChange={this.onChangeAchternaam} />
+                        <input type="text" required className="form-control"  onChange={this.onChangeAchternaam} />
                     </div>
                     <div className="form-group">
                         <label>Plaats</label>
-                        <input type="text" required className="form-control" value={this.state.plaats} onFocus={(e) => e.target.value === '...' ? e.target.value = '' : e.target.value} onChange={this.onChangePlaats} />
+                        <input type="text" required className="form-control"  onChange={this.onChangePlaats} />
                     </div>
                     <div className="form-group">
                         <label>Land</label>
-                        <input type="text" required className="form-control" value={this.state.land} onFocus={(e) => e.target.value === '...' ? e.target.value = '' : e.target.value} onChange={this.onChangeLand} />
+                        <input type="text" required className="form-control"  onChange={this.onChangeLand} />
                     </div>
                     <label >Kies uw appartement:</label>
                     <select className="appartementen" form="appartementenform" defaultValue="kies-appartement" onChange={this.onChangeAppartement}>
@@ -336,9 +345,9 @@ class Boeking extends Component {
                         {this.state.showConfirmationButton ? <input type="submit" value="Bevestig" className="btn btn-primary" display='false'/> : null}
                     </div>
                 </form>
-                {this.state.showPopupError ? <Popup text='Oeps, daar ging iets fout.' error={this.state.error}
+                {this.state.showPopupError ? <Popup text='Oeps, daar ging iets fout.' errorMessage={this.state.error} error= {true}
                 closePopup={this.togglePopupError.bind(this)} />  : null }
-                {this.state.showPopupSucces ? <Popup text='Gelukt, uw boeking is doorgekomen' 
+                {this.state.showPopupSucces ? <Popup text='Gelukt, uw boeking is doorgekomen' error={false}
                 closePopup={this.togglePopupSucces.bind(this)} />  : null }
             </div>
         );
