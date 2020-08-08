@@ -262,7 +262,42 @@ class Boeking extends Component {
             return !this.state.boekingenVierpersoons.includes(teFilterenDag);
         }
     };
+    
+    highlightWithRanges(){
+        const maandag = new Date(2020, 7, 10);
+        const vrijdag = new Date (2020, 7, 7);
 
+
+        var arrayHighlightedDays = [
+            maandag,
+        ]
+
+        var counter = 0;
+        
+        var laatstAangemaakteMaandag = new Date(maandag.getFullYear(), maandag.getMonth(), maandag.getDate());
+        var laatstAangemaakteVrijdag = new Date(vrijdag.getFullYear(), vrijdag.getMonth(), vrijdag.getDate());
+
+
+        while(counter < 52){
+            laatstAangemaakteMaandag.setDate(laatstAangemaakteMaandag.getDate() + 7)
+            laatstAangemaakteVrijdag.setDate(laatstAangemaakteVrijdag.getDate() + 7)
+
+            const appendDateMaandag = new Date(laatstAangemaakteMaandag.getFullYear(), laatstAangemaakteMaandag.getMonth(), laatstAangemaakteMaandag.getDate());
+            const appendDateVrijdag = new Date(laatstAangemaakteVrijdag.getFullYear(), laatstAangemaakteVrijdag.getMonth(), laatstAangemaakteVrijdag.getDate());
+
+            arrayHighlightedDays.push(appendDateMaandag);
+            arrayHighlightedDays.push(appendDateVrijdag);
+
+
+            counter = counter + 1
+        }
+
+        return [ 
+            {
+                "react-datepicker__day--highlighted-custom-1": arrayHighlightedDays
+        }
+        ]
+    }
 
     //send email
     sendMessage() {
@@ -326,6 +361,7 @@ class Boeking extends Component {
                                 filterDate={this.isBezet}
                                 withPortal
                                 strictParsing
+                                highlightDates={this.highlightWithRanges()}
                             />
                         </div>
                         <div className="datepicker-flex-item">

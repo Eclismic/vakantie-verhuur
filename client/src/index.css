@@ -278,6 +278,11 @@ input[type=text], select, textarea {
     background-color: red;
   }
 
+  .react-datepicker__day--highlighted-custom-1{
+    background-color: blue;
+    color: black;
+    border-radius: 12px ;
+  }
 /*
 *
 *
