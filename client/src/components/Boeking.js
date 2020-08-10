@@ -192,13 +192,13 @@ class Boeking extends Component {
 
     async validateBegindate(){
         return new Promise((resolve, reject) => {
-            (this.state.fulldateStart.getDay() === 1 || this.state.fulldateStart.getDay() ===  5) ? resolve('aankomst is op een maandag/vrijdag') : reject('aankomst is niet op maandag/vrijdag');
+            (this.state.fulldateStart.getDay() === 1 || this.state.fulldateStart.getDay() ===  5) ? resolve('aankomst is op een maandag/vrijdag') : reject('aankomst is niet op maandag/vrijdag; de wisseldagen zijn in blauw aangegeven.');
         })
     }
 
     async validateEnddate(){
         return new Promise((resolve, reject) => {
-            (this.state.fulldateEnd.getDay() === 1 || this.state.fulldateEnd.getDay() === 5) ? resolve('vertrek is op een maandag/vrijdag') : reject('vertrek is niet op maandag/vrijdag');
+            (this.state.fulldateEnd.getDay() === 1 || this.state.fulldateEnd.getDay() === 5) ? resolve('vertrek is op een maandag/vrijdag') : reject('vertrek is niet op maandag/vrijdag; de wisseldagen zijn in blauw aangegeven.');
         })
     }
 
@@ -373,6 +373,7 @@ class Boeking extends Component {
                                 filterDate={this.isBezet}
                                 withPortal
                                 strictParsing
+                                highlightDates={this.highlightWithRanges()}
                             />
                         </div>
                     </div>

@@ -361,6 +361,14 @@ li{
   margin: 0 auto;
 }
 
+#errordescription{
+  border: 1px solid rgb(73, 65, 65);
+  background-color:  rgb(73, 65, 65);
+  color: #fff;
+  font-style: oblique;
+  border-radius: 12px;
+}
+
 .popup-button-wrapper{
   width: 100px;
   height: 75px;

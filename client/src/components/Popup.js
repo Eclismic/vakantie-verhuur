@@ -8,7 +8,7 @@ const Popup = ({errorMessage, closePopup, text, error}) =>  {
           <div className='popup_inner'>
             <img id="popup-sign" src="https://img.icons8.com/color/100/000000/break--v4.png"/>
             <h1>{text}</h1>
-            <p>{errorMessage}</p>
+            <p id="errordescription">{errorMessage}</p>
             <div className="popup-button-wrapper">
                  <button id="popup-button" onClick={closePopup}>Ok</button>
             </div>
